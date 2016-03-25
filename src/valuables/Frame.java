@@ -40,31 +40,32 @@ public class Frame extends JFrame{
 	public void frameInit(){
 		setTitle("Valuables Register");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(frameWidth,frameHeight);
 		centerFrameOnDefaultMonitor();
 		
 		GridBagLayout layout = new GridBagLayout();
-		JPanel panel = new JPanel(layout){
-
-	        @Override
-	        public void paint(Graphics g){
-	            super.paint(g);
-	            int[][] dims = layout.getLayoutDimensions();
-	            g.setColor(Color.RED);
-	            int x = 0;
-	            for (int add : dims[0]){
-	                x += add;
-	                g.drawLine(x, 0, x, getHeight());
-	            }
-	            int y = 0;
-	            for (int add : dims[1]){
-	                y += add;
-	                g.drawLine(0, y, getWidth(), y);
-	            }
-	        }
-
-	    };
+		JPanel panel = new JPanel(layout);
+//		{
+//
+//	        @Override
+//	        public void paint(Graphics g){
+//	            super.paint(g);
+//	            int[][] dims = layout.getLayoutDimensions();
+//	            g.setColor(Color.RED);
+//	            int x = 0;
+//	            for (int add : dims[0]){
+//	                x += add;
+//	                g.drawLine(x, 0, x, getHeight());
+//	            }
+//	            int y = 0;
+//	            for (int add : dims[1]){
+//	                y += add;
+//	                g.drawLine(0, y, getWidth(), y);
+//	            }
+//	        }
+//
+//	    };
 		
 		panel.setPreferredSize(new Dimension(frameWidth,frameHeight));
 		//panel.setBackground(Color.green); //debugging
@@ -109,26 +110,7 @@ public class Frame extends JFrame{
 	}
 	private JPanel getTextArea(){
 		GridBagLayout layout = new GridBagLayout();
-		JPanel panel = new JPanel(layout){
-
-	        @Override
-	        public void paint(Graphics g){
-	            super.paint(g);
-	            int[][] dims = layout.getLayoutDimensions();
-	            g.setColor(Color.BLUE);
-	            int x = 0;
-	            for (int add : dims[0]){
-	                x += add;
-	                g.drawLine(x, 0, x, getHeight());
-	            }
-	            int y = 0;
-	            for (int add : dims[1]){
-	                y += add;
-	                g.drawLine(0, y, getWidth(), y);
-	            }
-	        }
-
-	    };
+		JPanel panel = new JPanel(layout);
 		
 		JLabel textAreaLabel = new JLabel("Valuables");
 		GridBagConstraints textAreaLabelConstraints = new GridBagConstraints();
@@ -189,26 +171,7 @@ public class Frame extends JFrame{
 	}
 	private JPanel getBottomBar(){
 		GridBagLayout layout = new GridBagLayout();
-		JPanel bottom = new JPanel(layout){
-
-	        @Override
-	        public void paint(Graphics g){
-	            super.paint(g);
-	            int[][] dims = layout.getLayoutDimensions();
-	            g.setColor(Color.BLACK);
-	            int x = 0;
-	            for (int add : dims[0]){
-	                x += add;
-	                g.drawLine(x, 0, x, getHeight());
-	            }
-	            int y = 0;
-	            for (int add : dims[1]){
-	                y += add;
-	                g.drawLine(0, y, getWidth(), y);
-	            }
-	        }
-
-	    };
+		JPanel bottom = new JPanel(layout);
 		
 		JComboBox comboBox = new JComboBox(new DefaultComboBoxModel(new String[] {"asföd", "sdfsd", "f"}));		
 		GridBagConstraints comboBoxConstraints = new GridBagConstraints();
