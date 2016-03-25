@@ -8,10 +8,11 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -50,7 +51,7 @@ public class Frame extends JFrame{
 	        public void paint(Graphics g){
 	            super.paint(g);
 	            int[][] dims = layout.getLayoutDimensions();
-	            g.setColor(Color.GREEN);
+	            g.setColor(Color.RED);
 	            int x = 0;
 	            for (int add : dims[0]){
 	                x += add;
@@ -80,62 +81,11 @@ public class Frame extends JFrame{
 		int frameLocationY = (int) ((height - frameHeight)/2); //Center the window on the Y axis		
 		setLocation(frameLocationX,frameLocationY);
 	}
-//	private void addFrameLayout(JPanel panel){
-//		
-//		GroupLayout layout = new GroupLayout(panel);
-//		panel.setLayout(layout);
-//		
-//		layout.setAutoCreateContainerGaps(true);
-//		layout.setAutoCreateGaps(true);
-//		
-//		textAreaLabel = new JLabel("Valuables");
-//		outputTextArea = new JTextArea();
-//		outputTextArea.setEditable(false);
-//		
-//		radioGroupLabel = new JLabel("Sort by");
-//		sortName = new JRadioButton("Name");
-//		sortValue = new JRadioButton("Value");
-//		
-//		valuable = new JComboBox(new DefaultComboBoxModel(new String[] {"asföd", "sdfsd", "f"}) );
-//		showValuables = new JButton("Show");
-//		marketCrash = new JButton("Market Crash");
-//		
-//		layout.setHorizontalGroup(
-//				layout.createSequentialGroup()
-//				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-//					.addComponent(textAreaLabel)
-//					.addComponent(outputTextArea)
-//					.addGroup(layout.createSequentialGroup()
-//						.addComponent(valuable)
-//						.addComponent(showValuables)
-//						.addComponent(marketCrash)))
-//				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-//					.addComponent(radioGroupLabel)
-//					.addComponent(sortName)
-//					.addComponent(sortValue))
-//		);
-//		
-//		layout.setVerticalGroup(
-//				layout.createParallelGroup()
-//				.addGroup(layout.createSequentialGroup()
-//						.addComponent(textAreaLabel)
-//						.addComponent(outputTextArea)
-//						.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-//							.addComponent(valuable, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-//							.addComponent(showValuables)
-//							.addComponent(marketCrash)))
-//				.addGroup(layout.createSequentialGroup()
-//					.addComponent(radioGroupLabel)
-//					.addComponent(sortName)
-//					.addComponent(sortValue))
-//		);
-//		layout.linkSize(valuable,showValuables,marketCrash);
-//		
-//	}
 	private void addFrameLayout(JPanel panel){
 		
 		GridBagConstraints textAreaConstraints = new GridBagConstraints();
 		textAreaConstraints.fill = GridBagConstraints.BOTH;
+		textAreaConstraints.anchor = GridBagConstraints.NORTHWEST;
 		textAreaConstraints.gridx = 0;
 		textAreaConstraints.gridy = 0;
 		textAreaConstraints.weightx = 1;
@@ -237,8 +187,28 @@ public class Frame extends JFrame{
 		
 		return radioButtonPanel;
 	}
-	private JPanel getBottomBar(){		
-		JPanel bottom = new JPanel(new GridBagLayout());
+	private JPanel getBottomBar(){
+		GridBagLayout layout = new GridBagLayout();
+		JPanel bottom = new JPanel(layout){
+
+	        @Override
+	        public void paint(Graphics g){
+	            super.paint(g);
+	            int[][] dims = layout.getLayoutDimensions();
+	            g.setColor(Color.BLACK);
+	            int x = 0;
+	            for (int add : dims[0]){
+	                x += add;
+	                g.drawLine(x, 0, x, getHeight());
+	            }
+	            int y = 0;
+	            for (int add : dims[1]){
+	                y += add;
+	                g.drawLine(0, y, getWidth(), y);
+	            }
+	        }
+
+	    };
 		
 		JComboBox comboBox = new JComboBox(new DefaultComboBoxModel(new String[] {"asföd", "sdfsd", "f"}));		
 		GridBagConstraints comboBoxConstraints = new GridBagConstraints();
@@ -247,13 +217,19 @@ public class Frame extends JFrame{
 		comboBoxConstraints.gridx = 0;
 		comboBoxConstraints.gridy = 0;
 		
-		JButton buttonShow = new JButton("Show");		
+		JButton buttonShow = new JButton("Show");
 		GridBagConstraints buttonShowConstrains = new GridBagConstraints();
 		buttonShowConstrains.fill = GridBagConstraints.NONE;
 		buttonShowConstrains.insets = new Insets(3,5,3,5);
 		buttonShowConstrains.gridx = 1;
 		buttonShowConstrains.gridy = 0;
 		
+		buttonShow.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				System.out.println("show");
+			}
+		});
 		
 		JButton buttonMarketCrash = new JButton("Market crash");		
 		GridBagConstraints buttonMarketCrashConstraints = new GridBagConstraints();
@@ -261,6 +237,13 @@ public class Frame extends JFrame{
 		buttonMarketCrashConstraints.insets = new Insets(3,5,3,5);
 		buttonMarketCrashConstraints.gridx = 2;
 		buttonMarketCrashConstraints.gridy = 0;
+		
+		buttonMarketCrash.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				System.out.println("market crash");
+			}
+		});
 		
 		bottom.add(comboBox,comboBoxConstraints);
 		bottom.add(buttonShow,buttonShowConstrains);
