@@ -24,7 +24,7 @@ public class Frame extends JFrame{
 	public void frameInit(){
 		setTitle("Valuables Register");
 		setResizable(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centerFrameOnDefaultMonitor();
 		
 		JPanel panel = new JPanel();
