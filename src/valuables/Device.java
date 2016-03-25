@@ -12,7 +12,7 @@ public class Device extends Valuable{
 
 	@Override
 	public double getValuePreTax() {		
-		return ((double)originalPrice)*(((double)wear)/10);
+		return originalPrice*(( (double) wear )/10);
 	}
 	
 
