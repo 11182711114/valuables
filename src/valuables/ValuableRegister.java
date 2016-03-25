@@ -8,7 +8,7 @@ public class ValuableRegister {
 	}
 	
 	private void run(){
-		ValuableHandler var = new ValuableHandler(this);
+		ValuableHandler var = new ValuableHandler();
 		var.addValuable(new Stock("LUPE", 5000, 135));
 		var.addValuable(new Stock("PULE", 500, 56.3));
 		var.addValuable(new Stock("SUPE", 250, 123.32));
@@ -23,5 +23,7 @@ public class ValuableRegister {
 			System.out.println(v.getName() +" "+ v.getValuePreTax() +" "+ v.getValuePostTax());
 		}
 		
+		//Frame frame = new Frame();
+			
 	}
 }

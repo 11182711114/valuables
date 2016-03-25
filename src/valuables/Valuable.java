@@ -1,7 +1,7 @@
 package valuables;
 
 public abstract class Valuable {
-	private static final double TAX_PERCENTAGE = 0.25;
+	private static final double TAX_PERCENTAGE = 1.25;
 	
 	private String name;
 	
@@ -10,7 +10,7 @@ public abstract class Valuable {
 	}
 	
 	public double getValuePostTax(){
-		return getValuePreTax()*(1-TAX_PERCENTAGE);		
+		return getValuePreTax()*TAX_PERCENTAGE;		
 	}
 	public String getName(){
 		return name;

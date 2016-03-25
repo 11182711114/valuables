@@ -3,12 +3,10 @@ package valuables;
 import java.util.ArrayList;
 
 public class ValuableHandler {
-	private final ValuableRegister valuableRegister;
 	
 	private ArrayList<Valuable> valuables = new ArrayList<>();
 	
-	public ValuableHandler(ValuableRegister valuableRegister){
-		this.valuableRegister = valuableRegister;		
+	public ValuableHandler(){
 	}
 
 	public ArrayList<Valuable> getValuables() {
