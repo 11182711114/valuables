@@ -23,7 +23,7 @@ public class ValuableRegister {
 			System.out.println(v.getName() +" "+ v.getValuePreTax() +" "+ v.getValuePostTax());
 		}
 		
-		//Frame frame = new Frame();
+		Frame frame = new Frame();
 			
 	}
 }
