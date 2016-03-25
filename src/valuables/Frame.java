@@ -22,7 +22,7 @@ import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class Frame extends JFrame{
-	private int frameWidth = 1200;
+	private int frameWidth = 500;
 	private int frameHeight = 500;
 	
 //	private JButton showValuables,marketCrash;
@@ -38,38 +38,15 @@ public class Frame extends JFrame{
 	
 	public void frameInit(){
 		setTitle("Valuables Register");
-		setResizable(true);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(frameWidth,frameHeight);
 		centerFrameOnDefaultMonitor();
 
-		GridBagLayout layout = new GridBagLayout();
-		JPanel panel = new JPanel() {
-
-	        @Override
-	        public void paint(Graphics g)
-	        {
-	            super.paint(g);
-	            int[][] dims = layout.getLayoutDimensions();
-	            g.setColor(Color.BLUE);
-	            int x = 0;
-	            for (int add : dims[0])
-	            {
-	                x += add;
-	                g.drawLine(x, 0, x, getHeight());
-	            }
-	            int y = 0;
-	            for (int add : dims[1])
-	            {
-	                y += add;
-	                g.drawLine(0, y, getWidth(), y);
-	            }
-	        }
-
-	    };
+		JPanel panel = new JPanel();
 		panel.setPreferredSize(new Dimension(frameWidth,frameHeight));
 		//panel.setBackground(Color.green); //debugging
-		addFrameLayout(panel,layout);
+		addFrameLayout(panel);
 		add(panel);
 		
 		setVisible(true);
@@ -134,7 +111,8 @@ public class Frame extends JFrame{
 //		layout.linkSize(valuable,showValuables,marketCrash);
 //		
 //	}
-	private void addFrameLayout(JPanel panel,GridBagLayout layout){
+	private void addFrameLayout(JPanel panel){
+		GridBagLayout layout = new GridBagLayout();
 		panel.setLayout(layout);
 	
 		JLabel textAreaLabel = new JLabel("Valuables");
