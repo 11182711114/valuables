@@ -138,7 +138,6 @@ public class Frame extends JFrame{
 		panel.setLayout(layout);
 	
 		JLabel textAreaLabel = new JLabel("Valuables");
-		
 		GridBagConstraints textAreaLabelConstraints = new GridBagConstraints();
 		textAreaLabelConstraints.anchor = GridBagConstraints.CENTER;
 		textAreaLabelConstraints.fill = GridBagConstraints.NONE;
@@ -151,9 +150,7 @@ public class Frame extends JFrame{
 
 		
 		JTextArea textArea = new JTextArea();
-		//textArea.setMinimumSize(new Dimension(500,100));
 		textArea.setEditable(false);
-		
 		GridBagConstraints textAreaConstraints = new GridBagConstraints();
 		textAreaConstraints.anchor = GridBagConstraints.WEST;
 		textAreaConstraints.fill = GridBagConstraints.BOTH;
@@ -163,12 +160,10 @@ public class Frame extends JFrame{
 		textAreaConstraints.gridheight = 1;
 		textAreaConstraints.weightx = 1;
 		textAreaConstraints.weighty = 1;
-		//textAreaConstraints.ipady = 40;
 		panel.add(textArea, textAreaConstraints);
 		
 		
 		JLabel radioButtonLabel = new JLabel("Sort by");
-		
 		GridBagConstraints radioButtonLabelConstraints = new GridBagConstraints();
 		radioButtonLabelConstraints.fill = GridBagConstraints.NONE;
 		radioButtonLabelConstraints.anchor = GridBagConstraints.SOUTH;
@@ -179,12 +174,10 @@ public class Frame extends JFrame{
 		radioButtonLabelConstraints.weightx = 0;
 		radioButtonLabelConstraints.weighty = 0;
 		
-
-		ButtonGroup radioButtonGroup = new ButtonGroup();		
+		ButtonGroup radioButtonGroup = new ButtonGroup();
 		
 		JRadioButton radioButtonSortByName = new JRadioButton("Name");
 		radioButtonGroup.add(radioButtonSortByName);
-		
 		GridBagConstraints radioButtonNameConstraints = new GridBagConstraints();
 		radioButtonNameConstraints.fill = GridBagConstraints.NONE;
 		radioButtonNameConstraints.anchor = GridBagConstraints.SOUTH;
@@ -195,10 +188,8 @@ public class Frame extends JFrame{
 		radioButtonNameConstraints.weightx = 0;
 		radioButtonNameConstraints.weighty = 0;
 		
-		
 		JRadioButton radioButtonSortByValue = new JRadioButton("Value");
 		radioButtonGroup.add(radioButtonSortByValue);
-		
 		GridBagConstraints radioButtonValueConstraints = new GridBagConstraints();
 		radioButtonValueConstraints.fill = GridBagConstraints.NONE;
 		radioButtonLabelConstraints.anchor = GridBagConstraints.SOUTH;
