@@ -44,24 +44,20 @@ public class Frame extends JFrame{
 		centerFrameOnDefaultMonitor();
 		
 		GridBagLayout layout = new GridBagLayout();
-		JPanel panel = new JPanel(layout)
-	    {
+		JPanel panel = new JPanel(layout){
 
 	        @Override
-	        public void paint(Graphics g)
-	        {
+	        public void paint(Graphics g){
 	            super.paint(g);
 	            int[][] dims = layout.getLayoutDimensions();
 	            g.setColor(Color.GREEN);
 	            int x = 0;
-	            for (int add : dims[0])
-	            {
+	            for (int add : dims[0]){
 	                x += add;
 	                g.drawLine(x, 0, x, getHeight());
 	            }
 	            int y = 0;
-	            for (int add : dims[1])
-	            {
+	            for (int add : dims[1]){
 	                y += add;
 	                g.drawLine(0, y, getWidth(), y);
 	            }
@@ -163,24 +159,20 @@ public class Frame extends JFrame{
 	}
 	private JPanel getTextArea(){
 		GridBagLayout layout = new GridBagLayout();
-		JPanel panel = new JPanel(layout)
-	    {
+		JPanel panel = new JPanel(layout){
 
 	        @Override
-	        public void paint(Graphics g)
-	        {
+	        public void paint(Graphics g){
 	            super.paint(g);
 	            int[][] dims = layout.getLayoutDimensions();
 	            g.setColor(Color.BLUE);
 	            int x = 0;
-	            for (int add : dims[0])
-	            {
+	            for (int add : dims[0]){
 	                x += add;
 	                g.drawLine(x, 0, x, getHeight());
 	            }
 	            int y = 0;
-	            for (int add : dims[1])
-	            {
+	            for (int add : dims[1]){
 	                y += add;
 	                g.drawLine(0, y, getWidth(), y);
 	            }
