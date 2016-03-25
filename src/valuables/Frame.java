@@ -42,8 +42,33 @@ public class Frame extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(frameWidth,frameHeight);
 		centerFrameOnDefaultMonitor();
+		
+		GridBagLayout layout = new GridBagLayout();
+		JPanel panel = new JPanel(layout)
+	    {
 
-		JPanel panel = new JPanel();
+	        @Override
+	        public void paint(Graphics g)
+	        {
+	            super.paint(g);
+	            int[][] dims = layout.getLayoutDimensions();
+	            g.setColor(Color.GREEN);
+	            int x = 0;
+	            for (int add : dims[0])
+	            {
+	                x += add;
+	                g.drawLine(x, 0, x, getHeight());
+	            }
+	            int y = 0;
+	            for (int add : dims[1])
+	            {
+	                y += add;
+	                g.drawLine(0, y, getWidth(), y);
+	            }
+	        }
+
+	    };
+		
 		panel.setPreferredSize(new Dimension(frameWidth,frameHeight));
 		//panel.setBackground(Color.green); //debugging
 		addFrameLayout(panel);
@@ -112,18 +137,62 @@ public class Frame extends JFrame{
 //		
 //	}
 	private void addFrameLayout(JPanel panel){
+		
+		GridBagConstraints textAreaConstraints = new GridBagConstraints();
+		textAreaConstraints.fill = GridBagConstraints.BOTH;
+		textAreaConstraints.gridx = 0;
+		textAreaConstraints.gridy = 0;
+		textAreaConstraints.weightx = 1;
+		textAreaConstraints.weighty = 1;
+		panel.add(getTextArea(), textAreaConstraints);
+		
+		GridBagConstraints radioButtonPanelConstraints = new GridBagConstraints();
+		radioButtonPanelConstraints.fill = GridBagConstraints.NONE;
+		radioButtonPanelConstraints.anchor = GridBagConstraints.SOUTH;
+		radioButtonPanelConstraints.gridx = 1;
+		radioButtonPanelConstraints.gridy = 0;
+		panel.add(getRadioButtons(), radioButtonPanelConstraints);
+
+		GridBagConstraints bottomConstraints = new GridBagConstraints();
+		bottomConstraints.fill = GridBagConstraints.NONE;
+		bottomConstraints.anchor = GridBagConstraints.EAST;
+		bottomConstraints.gridx = 0;
+		bottomConstraints.gridy = 1;
+		panel.add(getBottomBar(), bottomConstraints);
+		
+	}
+	private JPanel getTextArea(){
 		GridBagLayout layout = new GridBagLayout();
-		panel.setLayout(layout);
-	
+		JPanel panel = new JPanel(layout)
+	    {
+
+	        @Override
+	        public void paint(Graphics g)
+	        {
+	            super.paint(g);
+	            int[][] dims = layout.getLayoutDimensions();
+	            g.setColor(Color.BLUE);
+	            int x = 0;
+	            for (int add : dims[0])
+	            {
+	                x += add;
+	                g.drawLine(x, 0, x, getHeight());
+	            }
+	            int y = 0;
+	            for (int add : dims[1])
+	            {
+	                y += add;
+	                g.drawLine(0, y, getWidth(), y);
+	            }
+	        }
+
+	    };
+		
 		JLabel textAreaLabel = new JLabel("Valuables");
 		GridBagConstraints textAreaLabelConstraints = new GridBagConstraints();
 		textAreaLabelConstraints.anchor = GridBagConstraints.CENTER;
-		textAreaLabelConstraints.fill = GridBagConstraints.NONE;
-		textAreaLabelConstraints.gridy = 0;
 		textAreaLabelConstraints.gridx = 0;
-		textAreaLabelConstraints.gridwidth = 1;
-		textAreaLabelConstraints.gridheight = 1;
-		textAreaLabelConstraints.weightx = 1;
+		textAreaLabelConstraints.gridy = 0;
 		panel.add(textAreaLabel, textAreaLabelConstraints);
 
 		
@@ -140,113 +209,71 @@ public class Frame extends JFrame{
 		textAreaConstraints.weighty = 1;
 		panel.add(textArea, textAreaConstraints);
 		
+		return panel;
+	}
+	private JPanel getRadioButtons(){
+		JPanel radioButtonPanel = new JPanel(new GridBagLayout());
+		ButtonGroup radioButtonGroup = new ButtonGroup();
 		
 		JLabel radioButtonLabel = new JLabel("Sort by");
 		GridBagConstraints radioButtonLabelConstraints = new GridBagConstraints();
 		radioButtonLabelConstraints.fill = GridBagConstraints.NONE;
 		radioButtonLabelConstraints.anchor = GridBagConstraints.SOUTH;
-		radioButtonLabelConstraints.gridy = 0;
 		radioButtonLabelConstraints.gridx = 0;
-		radioButtonLabelConstraints.gridwidth = 1;
-		radioButtonLabelConstraints.gridheight = 1;
-		radioButtonLabelConstraints.weightx = 0;
-		radioButtonLabelConstraints.weighty = 0;
-		
-		ButtonGroup radioButtonGroup = new ButtonGroup();
+		radioButtonLabelConstraints.gridy = 0;
 		
 		JRadioButton radioButtonSortByName = new JRadioButton("Name");
 		radioButtonGroup.add(radioButtonSortByName);
 		GridBagConstraints radioButtonNameConstraints = new GridBagConstraints();
 		radioButtonNameConstraints.fill = GridBagConstraints.NONE;
 		radioButtonNameConstraints.anchor = GridBagConstraints.SOUTH;
-		radioButtonNameConstraints.gridy = 1;
 		radioButtonNameConstraints.gridx = 0;
-		radioButtonNameConstraints.gridwidth = 1;
-		radioButtonNameConstraints.gridheight = 1;
-		radioButtonNameConstraints.weightx = 0;
-		radioButtonNameConstraints.weighty = 0;
+		radioButtonNameConstraints.gridy = 1;
 		
 		JRadioButton radioButtonSortByValue = new JRadioButton("Value");
 		radioButtonGroup.add(radioButtonSortByValue);
 		GridBagConstraints radioButtonValueConstraints = new GridBagConstraints();
 		radioButtonValueConstraints.fill = GridBagConstraints.NONE;
 		radioButtonLabelConstraints.anchor = GridBagConstraints.SOUTH;
-		radioButtonValueConstraints.gridy = 2;
 		radioButtonValueConstraints.gridx = 0;
-		radioButtonValueConstraints.gridwidth = 1;
-		radioButtonValueConstraints.gridheight = 1;
-		radioButtonValueConstraints.weightx = 0;
-		radioButtonValueConstraints.weighty = 0;
-		JPanel radioButtonPanel = new JPanel();
-		GridBagLayout radioButtonLayout = new GridBagLayout();
-		radioButtonPanel.setLayout(radioButtonLayout);
+		radioButtonValueConstraints.gridy = 2;
+		
 		
 		radioButtonPanel.add(radioButtonLabel,radioButtonLabelConstraints);
 		radioButtonPanel.add(radioButtonSortByName,radioButtonNameConstraints);
 		radioButtonPanel.add(radioButtonSortByValue,radioButtonValueConstraints);
 		
-		GridBagConstraints radioButtonPanelConstraints = new GridBagConstraints();
-		radioButtonPanelConstraints.fill = GridBagConstraints.NONE;
-		radioButtonPanelConstraints.anchor = GridBagConstraints.SOUTH;
-		radioButtonPanelConstraints.gridy = 1;
-		radioButtonPanelConstraints.gridx = 1;
-		radioButtonPanelConstraints.gridwidth = 1;
-		radioButtonPanelConstraints.gridheight = 1;
-		radioButtonPanelConstraints.weightx = 0;
-		radioButtonPanelConstraints.weighty = 0;
-		panel.add(radioButtonPanel, radioButtonPanelConstraints);
+		return radioButtonPanel;
+	}
+	private JPanel getBottomBar(){		
+		JPanel bottom = new JPanel(new GridBagLayout());
 		
-	
 		JComboBox comboBox = new JComboBox(new DefaultComboBoxModel(new String[] {"asföd", "sdfsd", "f"}));		
 		GridBagConstraints comboBoxConstraints = new GridBagConstraints();
 		comboBoxConstraints.fill = GridBagConstraints.NONE;
 		comboBoxConstraints.insets = new Insets(3,5,3,5);
-		comboBoxConstraints.gridy = 0;
 		comboBoxConstraints.gridx = 0;
-		comboBoxConstraints.gridwidth = 1;
-		comboBoxConstraints.gridheight = 1;
-		comboBoxConstraints.weightx = 0;
-		comboBoxConstraints.weighty = 0;		
+		comboBoxConstraints.gridy = 0;
 		
 		JButton buttonShow = new JButton("Show");		
 		GridBagConstraints buttonShowConstrains = new GridBagConstraints();
 		buttonShowConstrains.fill = GridBagConstraints.NONE;
 		buttonShowConstrains.insets = new Insets(3,5,3,5);
-		buttonShowConstrains.gridy = 0;
 		buttonShowConstrains.gridx = 1;
-		buttonShowConstrains.gridwidth = 1;
-		buttonShowConstrains.gridheight = 1;
-		buttonShowConstrains.weightx = 0;
-		buttonShowConstrains.weighty = 0;
+		buttonShowConstrains.gridy = 0;
 		
 		
 		JButton buttonMarketCrash = new JButton("Market crash");		
 		GridBagConstraints buttonMarketCrashConstraints = new GridBagConstraints();
 		buttonMarketCrashConstraints.fill = GridBagConstraints.NONE;
 		buttonMarketCrashConstraints.insets = new Insets(3,5,3,5);
-		buttonMarketCrashConstraints.gridy = 0;
 		buttonMarketCrashConstraints.gridx = 2;
-		buttonMarketCrashConstraints.gridwidth = 1;
-		buttonMarketCrashConstraints.gridheight = 1;
-		buttonMarketCrashConstraints.weightx = 0;
-		buttonMarketCrashConstraints.weighty = 0;
+		buttonMarketCrashConstraints.gridy = 0;
 		
-		JPanel bottom = new JPanel(new GridBagLayout());
 		bottom.add(comboBox,comboBoxConstraints);
 		bottom.add(buttonShow,buttonShowConstrains);
 		bottom.add(buttonMarketCrash,buttonMarketCrashConstraints);
-
-		GridBagConstraints bottomConstraints = new GridBagConstraints();
-		bottomConstraints.fill = GridBagConstraints.NONE;
-		bottomConstraints.anchor = GridBagConstraints.EAST;
-		bottomConstraints.gridy = 2;
-		bottomConstraints.gridx = 0;
-		bottomConstraints.gridwidth = 1;
-		bottomConstraints.gridheight = 1;
-		bottomConstraints.weightx = 0;
-		bottomConstraints.weighty = 0;
 		
-		panel.add(bottom, bottomConstraints);
-		
+		return bottom;
 	}
 }
