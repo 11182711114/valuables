@@ -1,5 +1,8 @@
 package valuables;
 
+import valuables.gui.*;
+import valuables.items.*;
+
 public class ValuableRegister {
 
 	public static void main(String[] args) {

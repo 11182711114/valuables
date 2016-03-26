@@ -1,4 +1,4 @@
-package valuables;
+package valuables.items;
 
 public class Device extends Valuable{
 	private double originalPrice;

@@ -1,4 +1,4 @@
-package valuables;
+package valuables.items;
 
 public class Jewelry extends Valuable{
 	private int numberOfStones;

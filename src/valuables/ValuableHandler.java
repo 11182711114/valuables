@@ -2,6 +2,8 @@ package valuables;
 
 import java.util.ArrayList;
 
+import valuables.items.Valuable;
+
 public class ValuableHandler {
 	
 	private ArrayList<Valuable> valuables = new ArrayList<>();

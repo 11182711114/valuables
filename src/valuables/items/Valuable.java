@@ -1,4 +1,4 @@
-package valuables;
+package valuables.items;
 
 public abstract class Valuable {
 	private static final double TAX_PERCENTAGE = 1.25;

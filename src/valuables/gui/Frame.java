@@ -1,4 +1,4 @@
-package valuables;
+package valuables.gui;
 
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
