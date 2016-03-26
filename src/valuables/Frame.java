@@ -24,6 +24,8 @@ public class Frame extends JFrame{
 	private int frameWidth = 500;
 	private int frameHeight = 500;
 	
+	private JPanel defaultView;
+	
 	private JButton showValuables,marketCrash;
 	private JComboBox valuable;
 	private JTextArea outputTextArea;
@@ -40,35 +42,37 @@ public class Frame extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(frameWidth,frameHeight);
 		centerFrameOnDefaultMonitor();
-		
+		setDefaultView();
+		add(defaultView);
+		setVisible(true);
+	}
+	private void setDefaultView(){
 		GridBagLayout layout = new GridBagLayout();
-		JPanel panel = new JPanel(layout);
-//		{
-//
-//	        @Override
-//	        public void paint(Graphics g){
-//	            super.paint(g);
-//	            int[][] dims = layout.getLayoutDimensions();
-//	            g.setColor(Color.RED);
-//	            int x = 0;
-//	            for (int add : dims[0]){
-//	                x += add;
-//	                g.drawLine(x, 0, x, getHeight());
-//	            }
-//	            int y = 0;
-//	            for (int add : dims[1]){
-//	                y += add;
-//	                g.drawLine(0, y, getWidth(), y);
-//	            }
-//	        }
-//
-//	    };
+		defaultView = new JPanel(layout);
+	//	{
+	//
+	//        @Override
+	//        public void paint(Graphics g){
+	//            super.paint(g);
+	//            int[][] dims = layout.getLayoutDimensions();
+	//            g.setColor(Color.RED);
+	//            int x = 0;
+	//            for (int add : dims[0]){
+	//                x += add;
+	//                g.drawLine(x, 0, x, getHeight());
+	//            }
+	//            int y = 0;
+	//            for (int add : dims[1]){
+	//                y += add;
+	//                g.drawLine(0, y, getWidth(), y);
+	//            }
+	//        }
+	//
+	//    };
 		//panel.setBackground(Color.green); //debugging
 		
-		panel.setPreferredSize(new Dimension(frameWidth,frameHeight));
-		addFrameLayout(panel);
-		add(panel);
-		setVisible(true);
+		defaultView.setPreferredSize(new Dimension(frameWidth,frameHeight));
+		addFrameLayout(defaultView);
 	}
 	private void centerFrameOnDefaultMonitor(){
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
