@@ -8,6 +8,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -19,8 +21,13 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 
+import valuables.gui.dialogs.*;
+import valuables.items.*;
+
 @SuppressWarnings("serial")
 public class Frame extends JFrame{
+	private static final String[] ALLOWED_VALUABLES = {"Device","Jewelry","Stock"};
+	
 	private int frameWidth = 500;
 	private int frameHeight = 500;
 	
@@ -160,7 +167,7 @@ public class Frame extends JFrame{
 		GridBagLayout layout = new GridBagLayout();
 		JPanel bottom = new JPanel(layout);
 		
-		valuable = new JComboBox(new DefaultComboBoxModel(new String[] {"asföd", "sdfsd", "f"}));		
+		valuable = new JComboBox(new DefaultComboBoxModel(ALLOWED_VALUABLES));		
 		GridBagConstraints comboBoxConstraints = new GridBagConstraints();
 		comboBoxConstraints.fill = GridBagConstraints.NONE;
 		comboBoxConstraints.insets = new Insets(3,5,3,5);
@@ -198,7 +205,16 @@ public class Frame extends JFrame{
 			}
 		});
 		
-		
+		addFunctionality();
 		return bottom;
+	}
+	private void addFunctionality(){
+		valuable.addItemListener(new ItemListener(){
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == e.SELECTED)
+				System.out.println(e.getItem());
+			}
+		});
 	}
 }

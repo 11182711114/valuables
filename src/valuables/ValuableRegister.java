@@ -15,7 +15,7 @@ public class ValuableRegister {
 		var.addValuable(new Stock("LUPE", 5000, 135));
 		var.addValuable(new Stock("PULE", 500, 56.3));
 		var.addValuable(new Stock("SUPE", 250, 123.32));
-		var.addValuable(new Jewelry("Smaragdhalsband", 20, true));
+		var.addValuable(new Jewelry("halsband", 20, true));
 		var.addValuable(new Jewelry("ring", 5, false));
 		var.addValuable(new Jewelry("bla", 15, true));
 		var.addValuable(new Device("TV", 5000, 8));

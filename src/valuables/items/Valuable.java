@@ -5,6 +5,7 @@ public abstract class Valuable {
 	
 	private String name;
 	
+	
 	public Valuable(String name){
 		this.name = name;
 	}
@@ -17,5 +18,4 @@ public abstract class Valuable {
 	}
 	abstract public double getValuePreTax();
 	
-
 }
