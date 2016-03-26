@@ -1,8 +1,6 @@
 package valuables;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
@@ -31,7 +29,6 @@ public class Frame extends JFrame{
 //	private JTextArea outputTextArea;
 //	private JRadioButton sortName, sortValue;
 //	private JLabel radioGroupLabel, textAreaLabel;
-	
 	
 	public Frame(){
 		frameInit();
@@ -66,12 +63,11 @@ public class Frame extends JFrame{
 //	        }
 //
 //	    };
+		//panel.setBackground(Color.green); //debugging
 		
 		panel.setPreferredSize(new Dimension(frameWidth,frameHeight));
-		//panel.setBackground(Color.green); //debugging
 		addFrameLayout(panel);
 		add(panel);
-		
 		setVisible(true);
 	}
 	private void centerFrameOnDefaultMonitor(){
