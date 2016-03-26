@@ -21,12 +21,30 @@ public class ValuableRegister {
 		var.addValuable(new Device("TV", 5000, 8));
 		var.addValuable(new Device("Dator", 20000, 7));
 		var.addValuable(new Device("iPhone", 5000, 3));
+		var.addValuable(new Stock("A", 5000, 234));
+		var.addValuable(new Stock("B", 500, 56.3));
+		var.addValuable(new Stock("C", 250, 123.32));
+		var.addValuable(new Jewelry("D", 20, true));
+		var.addValuable(new Jewelry("E", 5, false));
+		var.addValuable(new Jewelry("F", 15, true));
+		var.addValuable(new Device("G", 5000, 8));
+		var.addValuable(new Device("H", 20000, 7));
+		var.addValuable(new Device("I", 5000, 3));
+		var.addValuable(new Stock("J", 5000, 135));
+		var.addValuable(new Stock("K", 500, 56.3));
+		var.addValuable(new Stock("L", 250, 123.32));
+		var.addValuable(new Jewelry("M", 20, true));
+		var.addValuable(new Jewelry("N", 5, false));
+		var.addValuable(new Jewelry("T", 15, true));
+		var.addValuable(new Device("U", 5000, 8));
+		var.addValuable(new Device("V", 20000, 7));
+		var.addValuable(new Device("S", 5000, 3));
 
 		for(Valuable v : var.getValuables()){
-			System.out.println(v.getName() +" "+ v.getValuePreTax() +" "+ v.getValuePostTax());
+			System.out.println(v.toPrint());
 		}
 		
-		Frame frame = new Frame();
+		Frame frame = new Frame(var);
 			
 	}
 }

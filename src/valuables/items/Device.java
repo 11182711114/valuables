@@ -14,6 +14,12 @@ public class Device extends Valuable{
 	public double getValuePreTax() {		
 		return originalPrice*(( (double) wear )/10);
 	}
-	
+
+	@Override
+	public String[] getSpecialVariables() {
+		String thisString = "wear:"+wear;
+		String[] output = {thisString};
+		return output;
+	}	
 
 }

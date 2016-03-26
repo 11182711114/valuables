@@ -19,4 +19,14 @@ public class Jewelry extends Valuable{
 		return value + (numberOfStones*500);
 	}
 	
+	@Override
+	public String[] getSpecialVariables() {
+		String thisString = "stones:"+numberOfStones;
+		String madeOf = "silver";
+		if(gold)
+			madeOf = "gold";		
+		String[] output = {thisString,madeOf};
+		return output;
+	}
+	
 }

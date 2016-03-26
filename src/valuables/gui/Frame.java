@@ -10,7 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Enumeration;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -19,27 +21,35 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
-import valuables.gui.dialogs.*;
+import valuables.ValuableHandler;
 import valuables.items.*;
 
 @SuppressWarnings("serial")
 public class Frame extends JFrame{
 	private static final String[] ALLOWED_VALUABLES = {"Device","Jewelry","Stock"};
+	private static final String newLine = "\n";
 	
 	private int frameWidth = 500;
 	private int frameHeight = 500;
 	
 	private JPanel defaultView;
 	
+	private ValuableHandler valuableHandler;
+	
 	private JButton showValuables,marketCrash;
+	private ButtonGroup radioButtonGroup;
 	private JComboBox valuable;
 	private JTextArea outputTextArea;
 	private JRadioButton sortName, sortValue;
 	private JLabel radioGroupLabel, textAreaLabel;
 	
-	public Frame(){
+	
+	public Frame(ValuableHandler valuableHandler){
+		this.valuableHandler = valuableHandler;
 		initialize();
 	}
 	
@@ -134,13 +144,17 @@ public class Frame extends JFrame{
 		textAreaPanelConstraints.gridy = 1;
 		textAreaPanelConstraints.weightx = 1;
 		textAreaPanelConstraints.weighty = 1;
-		panel.add(outputTextArea, textAreaPanelConstraints);
+		
+		JScrollPane textAreaScrollPane = new JScrollPane(outputTextArea);
+		textAreaScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		
+		panel.add(textAreaScrollPane, textAreaPanelConstraints);
 		
 		return panel;
 	}
 	private JPanel getRadioButtons(){
 		JPanel radioButtonPanel = new JPanel(new GridBagLayout());
-		ButtonGroup radioButtonGroup = new ButtonGroup();
+		radioButtonGroup = new ButtonGroup();
 		
 		radioGroupLabel = new JLabel("Sort by");
 		GridBagConstraints radioButtonConstraints = new GridBagConstraints();
@@ -183,13 +197,6 @@ public class Frame extends JFrame{
 		buttonShowConstrains.gridy = 0;
 		bottom.add(showValuables,buttonShowConstrains);
 		
-		showValuables.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				System.out.println("show");
-			}
-		});
-		
 		marketCrash = new JButton("Market crash");		
 		GridBagConstraints buttonMarketCrashConstraints = new GridBagConstraints();
 		buttonMarketCrashConstraints.fill = GridBagConstraints.NONE;
@@ -212,9 +219,61 @@ public class Frame extends JFrame{
 		valuable.addItemListener(new ItemListener(){
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == e.SELECTED)
+				if(e.getStateChange() == ItemEvent.SELECTED)
 				System.out.println(e.getItem());
 			}
 		});
+		
+//		sortValue.addItemListener(new ItemListener(){
+//
+//			@Override
+//			public void itemStateChanged(ItemEvent e) {
+//				if(e.getStateChange() == ItemEvent.SELECTED){
+//					valuableHandler.sortArray(1);
+//				}
+//				else{
+//					valuableHandler.sortArray(0);
+//				}
+//				
+//			}
+//		});
+		
+		showValuables.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for(Enumeration<AbstractButton> buttons = radioButtonGroup.getElements(); buttons.hasMoreElements();){
+					AbstractButton button = buttons.nextElement();
+					
+					if(button.isSelected()){
+						switch(button.getText()){
+						case "Name":
+							valuableHandler.sortArray(0);
+							break;
+						case "Value":
+							valuableHandler.sortArray(1);
+							break;
+						}
+						break;
+					}
+				}
+				addTextToTextArea();
+			}
+		});
+		
+		marketCrash.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				valuableHandler.marketCrash();
+			}
+		});
 	}
+	private void addTextToTextArea(){
+		outputTextArea.setText("");
+		for(Valuable var : valuableHandler.getValuables()){
+			outputTextArea.append(var.toPrint() + newLine);
+		}
+		outputTextArea.setCaretPosition(0); //start the scroll bar at the top of the list
+	}
+	
+	
 }
