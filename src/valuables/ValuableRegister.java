@@ -48,6 +48,6 @@ public class ValuableRegister {
 	}
 	private void init(){
 		valuableHandler = new ValuableHandler();
-		valuableHandler.run();
+		valuableHandler.startGUI();
 	}
 }

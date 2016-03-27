@@ -31,7 +31,7 @@ import valuables.gui.dialogs.NewValuable;
 import valuables.items.*;
 
 @SuppressWarnings("serial")
-public class GUI{ //FIXME bad code consistency
+public class GUI implements Runnable{ //FIXME bad code consistency
 	private static final String[] ALLOWED_VALUABLES = {"Device","Jewelry","Stock"};
 	private static final String newLine = "\n";
 	
@@ -54,6 +54,8 @@ public class GUI{ //FIXME bad code consistency
 	
 	public GUI(ValuableHandler valuableHandler){
 		this.valuableHandler = valuableHandler;
+	}
+	public void run(){
 		initialize();
 	}
 	

@@ -9,15 +9,16 @@ import valuables.items.Valuable;
 import valuables.items.comperators.NameComparator;
 import valuables.items.comperators.ValueComparator;
 
-public class ValuableHandler implements Runnable{
+public class ValuableHandler{
 	private GUI gui;
 	
 	private ArrayList<Valuable> valuables = new ArrayList<>();
 	
 	public ValuableHandler(){
 	}
-	private void startGUI(){
+	public void startGUI(){
 		gui = new GUI(this);
+		gui.run();
 	}
 
 	public ArrayList<Valuable> getValuables() {
@@ -45,10 +46,5 @@ public class ValuableHandler implements Runnable{
 			Collections.sort(valuables, new ValueComparator());
 			break;
 		}
-	}
-	@Override
-	public void run() {
-		startGUI();
-		
 	}
 }
