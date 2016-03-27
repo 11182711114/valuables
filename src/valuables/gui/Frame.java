@@ -205,13 +205,6 @@ public class Frame extends JFrame{
 		buttonMarketCrashConstraints.gridy = 0;
 		bottom.add(marketCrash,buttonMarketCrashConstraints);
 		
-		marketCrash.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				System.out.println("market crash");
-			}
-		});
-		
 		addFunctionality();
 		return bottom;
 	}
