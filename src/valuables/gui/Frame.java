@@ -26,12 +26,16 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
 import valuables.ValuableHandler;
+import valuables.gui.dialogs.NewDevice;
+import valuables.gui.dialogs.NewValuable;
 import valuables.items.*;
 
 @SuppressWarnings("serial")
-public class Frame extends JFrame{
+public class Frame{ //FIXME bad code consistency
 	private static final String[] ALLOWED_VALUABLES = {"Device","Jewelry","Stock"};
 	private static final String newLine = "\n";
+	
+	private JFrame mainWindow;
 	
 	private int frameWidth = 500;
 	private int frameHeight = 500;
@@ -54,14 +58,19 @@ public class Frame extends JFrame{
 	}
 	
 	public void initialize(){
-		setTitle("Valuables Register");
-		setResizable(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(frameWidth,frameHeight);
+		mainWindow = new JFrame();
+		configureMainWindow();
+	}
+	private void configureMainWindow(){
+		mainWindow.setTitle("Valuables Register");
+		mainWindow.setResizable(true);
+		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainWindow.setSize(frameWidth,frameHeight);
 		centerFrameOnDefaultMonitor();
 		setDefaultView();
-		add(defaultView);
-		setVisible(true);
+		mainWindow.add(defaultView);
+		mainWindow.setVisible(true);
+		
 	}
 	private void setDefaultView(){
 		GridBagLayout layout = new GridBagLayout();
@@ -97,7 +106,7 @@ public class Frame extends JFrame{
 		int height = gd.getDisplayMode().getHeight();
 		int frameLocationX = (int) ((width - frameWidth)/2); //Center the window on the X axis
 		int frameLocationY = (int) ((height - frameHeight)/2); //Center the window on the Y axis		
-		setLocation(frameLocationX,frameLocationY);
+		mainWindow.setLocation(frameLocationX,frameLocationY);
 	}
 	private void addFrameLayout(JPanel panel){
 		
@@ -204,8 +213,11 @@ public class Frame extends JFrame{
 		valuable.addItemListener(new ItemListener(){
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED)
-				System.out.println(e.getItem());
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					System.out.println(e.getItem().toString());
+					NewValuable v = new NewValuable(mainWindow);
+				}
+				
 			}
 		});
 		

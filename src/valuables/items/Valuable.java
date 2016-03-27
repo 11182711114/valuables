@@ -5,8 +5,8 @@ public abstract class Valuable{
 	
 	private String name;
 	
-	String fullClassName = this.getClass().getName();								//gets the full class path as string
-	String className = fullClassName.substring(fullClassName.lastIndexOf('.')+1);	//trims fullClassName to after last '.'(i.e. only the class name)
+	private String fullClassName = this.getClass().getName();								//gets the full class path as string
+	private String className = fullClassName.substring(fullClassName.lastIndexOf('.')+1);	//trims fullClassName to after last '.'(i.e. only the class name)
 	
 	
 	public Valuable(String name){
