@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 
 import valuables.gui.GUI;
 
-public class NewValuable{
+public class NewValuable{//FIXME Rewrite - use JOption?Dialog?
 	
 	private int frameWidth = 300;
 	private int frameHeight = 300;
