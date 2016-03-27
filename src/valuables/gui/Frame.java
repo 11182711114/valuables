@@ -179,31 +179,23 @@ public class Frame extends JFrame{
 	}
 	private JPanel getBottomBar(){
 		GridBagLayout layout = new GridBagLayout();
-		JPanel bottom = new JPanel(layout);
+		JPanel bottom = new JPanel(layout);	
+		GridBagConstraints lowerBarConstraints = new GridBagConstraints();
 		
-		valuable = new JComboBox(new DefaultComboBoxModel(ALLOWED_VALUABLES));		
-		GridBagConstraints comboBoxConstraints = new GridBagConstraints();
-		comboBoxConstraints.fill = GridBagConstraints.NONE;
-		comboBoxConstraints.insets = new Insets(3,5,3,5);
-		comboBoxConstraints.gridx = 0;
-		comboBoxConstraints.gridy = 0;
-		bottom.add(valuable,comboBoxConstraints);
+		valuable = new JComboBox(new DefaultComboBoxModel(ALLOWED_VALUABLES));	
+		lowerBarConstraints.fill = GridBagConstraints.NONE;
+		lowerBarConstraints.insets = new Insets(3,5,3,5);
+		lowerBarConstraints.gridx = 0;
+		lowerBarConstraints.gridy = 0;
+		bottom.add(valuable,lowerBarConstraints);
 		
 		showValuables = new JButton("Show");
-		GridBagConstraints buttonShowConstrains = new GridBagConstraints();
-		buttonShowConstrains.fill = GridBagConstraints.NONE;
-		buttonShowConstrains.insets = new Insets(3,5,3,5);
-		buttonShowConstrains.gridx = 1;
-		buttonShowConstrains.gridy = 0;
-		bottom.add(showValuables,buttonShowConstrains);
+		lowerBarConstraints.gridx = 1;
+		bottom.add(showValuables,lowerBarConstraints);
 		
-		marketCrash = new JButton("Market crash");		
-		GridBagConstraints buttonMarketCrashConstraints = new GridBagConstraints();
-		buttonMarketCrashConstraints.fill = GridBagConstraints.NONE;
-		buttonMarketCrashConstraints.insets = new Insets(3,5,3,5);
-		buttonMarketCrashConstraints.gridx = 2;
-		buttonMarketCrashConstraints.gridy = 0;
-		bottom.add(marketCrash,buttonMarketCrashConstraints);
+		marketCrash = new JButton("Market crash");
+		lowerBarConstraints.gridx = 2;
+		bottom.add(marketCrash,lowerBarConstraints);
 		
 		addFunctionality();
 		return bottom;
