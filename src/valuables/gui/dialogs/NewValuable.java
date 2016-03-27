@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dialog.ModalityType;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -15,10 +17,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import valuables.gui.GUI;
+
 public class NewValuable{
 	
 	private int frameWidth = 300;
 	private int frameHeight = 300;
+	
+	private GUI gui;
 	
 	private JDialog window;
 	private JPanel panel;
@@ -28,12 +34,13 @@ public class NewValuable{
 	private GridBagLayout panelLayout;
 	private GridBagConstraints textConstraints,inputConstraints;
 	
-	public NewValuable(JFrame frame){
-		initialize(frame);		
+	public NewValuable(GUI gui){
+		this.gui = gui;
+		initialize();		
 	}
-	private void initialize(JFrame frame){
+	private void initialize(){
 		JDialog.setDefaultLookAndFeelDecorated(true);
-		window = new JDialog(frame);
+		window = new JDialog(gui.getFrame());
 		panelLayout = new GridBagLayout();
 		panel = new JPanel(panelLayout);
 		addFields();
@@ -43,11 +50,19 @@ public class NewValuable{
 	}
 	private void setWindowOptions(){
 		window.setTitle("New "+ getClassName());
-		//window.setSize(frameWidth, frameHeight);
+		window.setSize(frameWidth, frameHeight);
 		window.setResizable(false);
 		window.setModalityType(ModalityType.APPLICATION_MODAL);
 		window.setVisible(true);
-		
+		centerFrameOnDefaultMonitor();		
+	}
+	private void centerFrameOnDefaultMonitor(){
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		int width = gd.getDisplayMode().getWidth();
+		int height = gd.getDisplayMode().getHeight();
+		int frameLocationX = (int) ((width - frameWidth)/2); //Center the window on the X axis
+		int frameLocationY = (int) ((height - frameHeight)/2); //Center the window on the Y axis		
+		window.setLocation(frameLocationX,frameLocationY);
 	}
 	private String getClassName(){
 		String fullClassName = this.getClass().getName();

@@ -210,12 +210,13 @@ public class GUI{ //FIXME bad code consistency
 		return bottom;
 	}
 	private void addFunctionality(){
+		GUI gui = this;
 		valuable.addItemListener(new ItemListener(){
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					System.out.println(e.getItem().toString());
-					NewValuable v = new NewValuable(mainWindow);
+					NewValuable v = new NewValuable(gui);
 				}
 				
 			}
@@ -271,6 +272,8 @@ public class GUI{ //FIXME bad code consistency
 		}
 		outputTextArea.setCaretPosition(0); //start the scroll bar at the top of the list
 	}
-	
+	public JFrame getFrame(){
+		return mainWindow;
+	}
 	
 }

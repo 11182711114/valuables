@@ -1,14 +1,15 @@
 package valuables.gui.dialogs;
 
 import javax.swing.JFrame;
+import valuables.gui.*;
 
 public class NewDevice extends NewValuable{
 
 	private double originalPrice;
 	private int wear;
 	
-	public NewDevice(JFrame frame) {
-		super(frame);
+	public NewDevice(GUI gui) {
+		super(gui);
 	}
 	
 	
