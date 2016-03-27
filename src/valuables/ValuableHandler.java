@@ -3,16 +3,21 @@ package valuables;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import valuables.gui.GUI;
 import valuables.items.Stock;
 import valuables.items.Valuable;
 import valuables.items.comperators.NameComparator;
 import valuables.items.comperators.ValueComparator;
 
-public class ValuableHandler {
+public class ValuableHandler implements Runnable{
+	private GUI gui;
 	
 	private ArrayList<Valuable> valuables = new ArrayList<>();
 	
 	public ValuableHandler(){
+	}
+	private void startGUI(){
+		gui = new GUI(this);
 	}
 
 	public ArrayList<Valuable> getValuables() {
@@ -40,5 +45,10 @@ public class ValuableHandler {
 			Collections.sort(valuables, new ValueComparator());
 			break;
 		}
+	}
+	@Override
+	public void run() {
+		startGUI();
+		
 	}
 }

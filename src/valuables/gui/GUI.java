@@ -31,7 +31,7 @@ import valuables.gui.dialogs.NewValuable;
 import valuables.items.*;
 
 @SuppressWarnings("serial")
-public class Frame{ //FIXME bad code consistency
+public class GUI{ //FIXME bad code consistency
 	private static final String[] ALLOWED_VALUABLES = {"Device","Jewelry","Stock"};
 	private static final String newLine = "\n";
 	
@@ -52,7 +52,7 @@ public class Frame{ //FIXME bad code consistency
 	private JLabel radioGroupLabel, textAreaLabel;
 	
 	
-	public Frame(ValuableHandler valuableHandler){
+	public GUI(ValuableHandler valuableHandler){
 		this.valuableHandler = valuableHandler;
 		initialize();
 	}

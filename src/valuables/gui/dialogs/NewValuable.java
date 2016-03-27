@@ -2,6 +2,7 @@ package valuables.gui.dialogs;
 
 import java.awt.Color;
 import java.awt.Dialog.ModalityType;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -33,35 +34,16 @@ public class NewValuable{
 	private void initialize(JFrame frame){
 		JDialog.setDefaultLookAndFeelDecorated(true);
 		window = new JDialog(frame);
-		setWindowOptions();
 		panelLayout = new GridBagLayout();
-		panel = new JPanel(panelLayout){
-			
-			        @Override
-			        public void paint(Graphics g){
-			            super.paint(g);
-			            int[][] dims = panelLayout.getLayoutDimensions();
-			            g.setColor(Color.RED);
-			            int x = 0;
-			            for (int add : dims[0]){
-			                x += add;
-			                g.drawLine(x, 0, x, getHeight());
-			            }
-			            int y = 0;
-			            for (int add : dims[1]){
-			                y += add;
-			                g.drawLine(0, y, getWidth(), y);
-			            }
-			        }
-			
-			    };
+		panel = new JPanel(panelLayout);
 		addFields();
-		panel.setBackground(Color.GREEN);
-		window.setContentPane(panel);
+		window.add(panel);
+		window.pack();
+		setWindowOptions();
 	}
 	private void setWindowOptions(){
 		window.setTitle("New "+ getClassName());
-		window.setSize(frameWidth, frameHeight);
+		//window.setSize(frameWidth, frameHeight);
 		window.setResizable(false);
 		window.setModalityType(ModalityType.APPLICATION_MODAL);
 		window.setVisible(true);
@@ -78,8 +60,8 @@ public class NewValuable{
 	private void addNameField(){		
 		nameLabel = new JLabel("Name:");
 		panel.add(nameLabel,textConstraints);
-		
 		nameInput = new JTextField();
+		nameInput.setPreferredSize(new Dimension(150,20));
 		panel.add(nameInput,inputConstraints);
 	}
 	private void setConstraints(){
