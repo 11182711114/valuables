@@ -31,7 +31,7 @@ public class ValuableHandler {
 			}
 		}
 	}
-	public void sortArray(int method){
+	public void sortValuables(int method){
 		switch(method){
 		case 0:
 			Collections.sort(valuables,new NameComparator());

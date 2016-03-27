@@ -39,10 +39,6 @@ public class ValuableRegister {
 		var.addValuable(new Device("U", 5000, 8));
 		var.addValuable(new Device("V", 20000, 7));
 		var.addValuable(new Device("S", 5000, 3));
-
-		for(Valuable v : var.getValuables()){
-			System.out.println(v.toPrint());
-		}
 		
 		Frame frame = new Frame(var);
 			

@@ -247,10 +247,10 @@ public class Frame extends JFrame{
 					if(button.isSelected()){
 						switch(button.getText()){
 						case "Name":
-							valuableHandler.sortArray(0);
+							valuableHandler.sortValuables(0);
 							break;
 						case "Value":
-							valuableHandler.sortArray(1);
+							valuableHandler.sortValuables(1);
 							break;
 						}
 						break;
