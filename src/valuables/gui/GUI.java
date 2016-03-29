@@ -1,6 +1,7 @@
 package valuables.gui;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
@@ -193,7 +194,8 @@ public class GUI implements Runnable{ //FIXME bad code consistency
 		JPanel bottom = new JPanel(layout);	
 		GridBagConstraints lowerBarConstraints = new GridBagConstraints();
 		
-		valuable = new JComboBox(new DefaultComboBoxModel(ALLOWED_VALUABLES));	
+		valuable = new JComboBox(new DefaultComboBoxModel(ALLOWED_VALUABLES));
+		valuable.setSelectedIndex(-1);	
 		lowerBarConstraints.fill = GridBagConstraints.NONE;
 		lowerBarConstraints.insets = new Insets(3,5,3,5);
 		lowerBarConstraints.gridx = 0;
@@ -216,6 +218,7 @@ public class GUI implements Runnable{ //FIXME bad code consistency
 		valuable.addItemListener(new ItemListener(){
 			@Override
 			public void itemStateChanged(ItemEvent e) {
+				System.out.println(e);
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					System.out.println(e.getItem().toString());
 					NewValuable v = new NewValuable(gui);
@@ -256,7 +259,7 @@ public class GUI implements Runnable{ //FIXME bad code consistency
 						break;
 					}
 				}
-				addTextToTextArea();
+				writeToTextArea();
 			}
 		});
 		
@@ -267,7 +270,7 @@ public class GUI implements Runnable{ //FIXME bad code consistency
 			}
 		});
 	}
-	private void addTextToTextArea(){
+	private void writeToTextArea(){
 		outputTextArea.setText("");
 		for(Valuable var : valuableHandler.getValuables()){
 			outputTextArea.append(var.toPrint() + newLine);

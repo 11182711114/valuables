@@ -39,7 +39,7 @@ public class NewValuable{//FIXME Rewrite - use JOption?Dialog?
 		initialize();		
 	}
 	private void initialize(){
-		JDialog.setDefaultLookAndFeelDecorated(true);
+		//JDialog.setDefaultLookAndFeelDecorated(true);
 		window = new JDialog(gui.getFrame());
 		panelLayout = new GridBagLayout();
 		panel = new JPanel(panelLayout);
