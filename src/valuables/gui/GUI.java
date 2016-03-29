@@ -1,7 +1,6 @@
 package valuables.gui;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
@@ -27,12 +26,10 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
 import valuables.ValuableHandler;
-import valuables.gui.dialogs.NewDevice;
 import valuables.gui.dialogs.NewValuable;
 import valuables.items.*;
 
-@SuppressWarnings("serial")
-public class GUI implements Runnable{ //FIXME bad code consistency
+public class GUI{ //FIXME bad code consistency
 	private static final String[] ALLOWED_VALUABLES = {"Device","Jewelry","Stock"};
 	private static final String newLine = "\n";
 	
@@ -55,25 +52,24 @@ public class GUI implements Runnable{ //FIXME bad code consistency
 	
 	public GUI(ValuableHandler valuableHandler){
 		this.valuableHandler = valuableHandler;
+		mainWindow = new JFrame();
 	}
 	public void run(){
 		initialize();
 	}
 	
 	public void initialize(){
-		mainWindow = new JFrame();
 		configureMainWindow();
+		mainWindow.setVisible(true);
 	}
 	private void configureMainWindow(){
-		mainWindow.setTitle("Valuables Register");
+		mainWindow.setTitle("Valuable Register");
 		mainWindow.setResizable(true);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainWindow.setSize(frameWidth,frameHeight);
 		centerFrameOnDefaultMonitor();
 		setDefaultView();
-		mainWindow.add(defaultView);
-		mainWindow.setVisible(true);
-		
+		mainWindow.add(defaultView);	
 	}
 	private void setDefaultView(){
 		GridBagLayout layout = new GridBagLayout();
@@ -223,7 +219,6 @@ public class GUI implements Runnable{ //FIXME bad code consistency
 					System.out.println(e.getItem().toString());
 					NewValuable v = new NewValuable(gui);
 				}
-				
 			}
 		});
 		
