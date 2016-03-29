@@ -54,12 +54,16 @@ public class ValuableHandler{
 
 	}
 	private class ValueComparator implements Comparator<Valuable>{
-		//FIXME
-		//This is not accurate if the value is different after the . i.e. 100.1 == 100.5
 		@Override
 		public int compare(Valuable originalValuable, Valuable otherValuable) {
-			return (int) (otherValuable.getValuePostTax()-originalValuable.getValuePostTax());
+			int output = 0;
+			double d = otherValuable.getValuePostTax()-originalValuable.getValuePostTax();
+			if(d<0)
+				output = -1;
+			else if(d>0)
+				output = 1;
+			
+			return output;
 		}
-
 	}
 }
