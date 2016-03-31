@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -26,6 +27,7 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
 import valuables.ValuableHandler;
+import valuables.gui.dialogs.NewDevice;
 import valuables.gui.dialogs.NewValuable;
 import valuables.items.*;
 
@@ -210,14 +212,23 @@ public class GUI{ //FIXME bad code consistency
 		return bottom;
 	}
 	private void addFunctionality(){
-		GUI gui = this;
 		valuable.addItemListener(new ItemListener(){
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				System.out.println(e);
 				if(e.getStateChange() == ItemEvent.SELECTED){
-					System.out.println(e.getItem().toString());
-					NewValuable v = new NewValuable(gui);
+					System.out.println(e.getItem());
+					switch(e.getItem().toString()){
+					case "Device":
+						Device toAdd;
+						valuableHandler.addValuable(null);
+						showNewDeviceDialog();
+						break;
+					case "Stock":
+						break;
+					case "Jewelry":
+						break;
+					}
 				}
 			}
 		});
@@ -245,10 +256,10 @@ public class GUI{ //FIXME bad code consistency
 					if(button.isSelected()){
 						switch(button.getText()){
 						case "Name":
-							valuableHandler.sortValuables(0);
+							valuableHandler.sortValuables(ValuableHandler.SORT_BY_NAME);
 							break;
 						case "Value":
-							valuableHandler.sortValuables(1);
+							valuableHandler.sortValuables(ValuableHandler.SORT_BY_VALUE);
 							break;
 						}
 						break;
@@ -264,6 +275,10 @@ public class GUI{ //FIXME bad code consistency
 				valuableHandler.marketCrash();
 			}
 		});
+	}
+	private void showNewDeviceDialog(){
+		NewDevice newDeviceDialog = new NewDevice();
+		int svar = NewDevice.showConfirmDialog(mainWindow,newDeviceDialog.getMainPanel(),newDeviceDialog.getTitleName(),JOptionPane.OK_CANCEL_OPTION);
 	}
 	private void writeToTextArea(){
 		outputTextArea.setText("");

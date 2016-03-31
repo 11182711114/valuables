@@ -9,6 +9,8 @@ import valuables.items.Stock;
 import valuables.items.Valuable;
 
 public class ValuableHandler{
+	public static final int SORT_BY_NAME = 0;
+	public static final int SORT_BY_VALUE = 1;
 	private GUI gui;
 	
 	private ArrayList<Valuable> valuables = new ArrayList<>();

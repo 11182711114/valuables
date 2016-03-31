@@ -13,14 +13,16 @@ import valuables.items.Valuable;
 public class NewDevice extends NewValuable{
 	
 	private JLabel originalValueText = new JLabel("Original value:");
-	private JTextField originalValueInput = new JTextField();
+	private JTextField originalValueInput = new JTextField(10);
 	private JLabel wearText = new JLabel("Condition:");
-	private JTextField wearInput = new JTextField();
+	private JTextField wearInput = new JTextField(10);
 	
 	public NewDevice(){
 		super();
-		this.add(getValuePanel());
-		this.add(getWearPanel());
+		JPanel mainPanel = getMainPanel();
+		mainPanel.add(getValuePanel());
+		mainPanel.add(getWearPanel());
+		mainPanel.setVisible(true);
 	}
 	private JPanel getValuePanel(){
 		JPanel valuePanel = new JPanel(new FlowLayout());
