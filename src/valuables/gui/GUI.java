@@ -220,8 +220,6 @@ public class GUI{ //FIXME bad code consistency
 					System.out.println(e.getItem());
 					switch(e.getItem().toString()){
 					case "Device":
-						Device toAdd;
-						valuableHandler.addValuable(null);
 						showNewDeviceDialog();
 						break;
 					case "Stock":
@@ -278,7 +276,19 @@ public class GUI{ //FIXME bad code consistency
 	}
 	private void showNewDeviceDialog(){
 		NewDevice newDeviceDialog = new NewDevice();
-		int svar = NewDevice.showConfirmDialog(mainWindow,newDeviceDialog.getMainPanel(),newDeviceDialog.getTitleName(),JOptionPane.OK_CANCEL_OPTION);
+		int svar = NewDevice.showConfirmDialog(
+													mainWindow,
+													newDeviceDialog.getMainPanel(),
+													newDeviceDialog.getTitleName(),
+													JOptionPane.OK_CANCEL_OPTION
+												);
+		if(svar == JOptionPane.OK_OPTION){
+			Device d = (Device)newDeviceDialog.getValuable();
+			System.out.println(d.toString() + "\n" + d.toPrint());
+			if(d != null){
+				valuableHandler.addValuable(d);
+			}
+		}		
 	}
 	private void writeToTextArea(){
 		outputTextArea.setText("");

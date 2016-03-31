@@ -39,7 +39,7 @@ public class NewDevice extends NewValuable{
 	public double getOriginalValue(){
 		double output = -1;
 		try{
-			output = Integer.parseInt(originalValueInput.getSelectedText());
+			output = Integer.parseInt(originalValueInput.getText());
 		}
 		catch(NumberFormatException e){
 			
@@ -49,7 +49,7 @@ public class NewDevice extends NewValuable{
 	public int getWear(){
 		int output = -1;
 		try{
-			output = Integer.parseInt(wearInput.getSelectedText());
+			output = Integer.parseInt(wearInput.getText());
 		}
 		catch(NumberFormatException e){
 			

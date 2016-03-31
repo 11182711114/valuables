@@ -30,7 +30,7 @@ public abstract class NewValuable extends JOptionPane{
 		return "New " + className;
 	}
 	public String getName(){
-		return nameInput.getSelectedText();
+		return nameInput.getText();
 	}
 	public JPanel getMainPanel(){
 		return mainPanel;

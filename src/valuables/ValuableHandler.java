@@ -28,6 +28,11 @@ public class ValuableHandler{
 	public void addValuable(Valuable valuable){
 		valuables.add(valuable);
 	}
+	private void printValuables(){
+		for(Valuable v : valuables){
+			System.out.println(v.toPrint());
+		}
+	}
 	public void addMultipleValuables(ArrayList<Valuable> valuables){
 		this.valuables.addAll(valuables);
 	}
