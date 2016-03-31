@@ -1,6 +1,5 @@
 package valuables.gui.dialogs;
 
-import javax.swing.JFrame;
 import valuables.gui.*;
 
 public class NewDevice extends NewValuable{

@@ -1,7 +1,5 @@
 package valuables;
 
-import valuables.gui.*;
-import valuables.gui.dialogs.NewDevice;
 import valuables.items.*;
 
 public class ValuableRegister {
