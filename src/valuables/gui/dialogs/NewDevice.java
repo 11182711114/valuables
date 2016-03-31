@@ -61,7 +61,9 @@ public class NewDevice extends NewValuable{
 		Device device = null;
 		try{
 			String name = getName();
-			device = new Device(name, getOriginalValue(), getWear());
+			double originalValue = getOriginalValue();
+			int wear = getWear();
+			device = new Device(name, originalValue, wear);
 		}catch(Exception e){
 			
 		}
