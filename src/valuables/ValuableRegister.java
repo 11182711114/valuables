@@ -42,10 +42,11 @@ public class ValuableRegister {
 		valuableHandler.addValuable(new Device("U", 5000, 8));
 		valuableHandler.addValuable(new Device("V", 20000, 7));
 		valuableHandler.addValuable(new Device("S", 5000, 3));
+
+		valuableHandler.startGUI();
 			
 	}
 	private void init(){
 		valuableHandler = new ValuableHandler();
-		valuableHandler.startGUI();
 	}
 }

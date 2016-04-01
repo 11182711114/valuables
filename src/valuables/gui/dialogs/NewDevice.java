@@ -1,6 +1,9 @@
 package valuables.gui.dialogs;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -59,16 +62,59 @@ public class NewDevice extends NewValuable{
 	@Override
 	public Valuable getValuable() {
 		Device device = null;
-		try{
-			String name = getName();
-			double originalValue = getOriginalValue();
-			int wear = getWear();
-			device = new Device(name, originalValue, wear);
-		}catch(Exception e){
-			
-		}
+		String name = getName();
+		double originalValue = roundDouble(getOriginalValue());
+		int wear = getWear();
+		device = new Device(name, originalValue, wear);
+		
 		return device;
 	}
-	
-
+	private double roundDouble(double d){
+		DecimalFormat df = new DecimalFormat("#.##");
+		df.setRoundingMode(RoundingMode.CEILING);
+		
+		double roundedDouble = Double.parseDouble(df.format(d));
+		return roundedDouble;
+	}
+	@Override
+	public boolean checkInput() {
+		
+		if(checkName()){
+			if(checkValue()){
+				if(checkWear()){
+					return true;
+				}
+				else{
+					this.setError(wearInput, "Wear must be an integer!");
+				}
+			}
+			else{
+				this.setError(originalValueText, "Value must be a number!");
+			}
+		}
+		else{
+			this.setError(getNameLabel(), "Names cannot be empty!");
+		}
+		return false;
+	}
+	private boolean checkValue(){
+		boolean isCorrect = false;
+		try{
+			if(Double.parseDouble(originalValueInput.getText().trim())>0)
+				isCorrect = true;
+			}
+		catch(NumberFormatException e){}
+		return isCorrect;
+	}
+	private boolean checkWear(){
+		boolean isCorrect = false;
+		
+		try{
+			if(Integer.parseInt(wearInput.getText().trim())>0)
+				isCorrect = true;
+		}
+		catch(NumberFormatException e){}
+		
+		return isCorrect;
+	}
 }

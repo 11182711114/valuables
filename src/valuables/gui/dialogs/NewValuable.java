@@ -1,6 +1,10 @@
 package valuables.gui.dialogs;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -26,14 +30,42 @@ public abstract class NewValuable extends JOptionPane{
 		namePanel.add(nameInput);
 		mainPanel.add(namePanel);
 	}
+	public void setOptions(){
+		if(checkInput()){
+			this.setVisible(false);			
+		}
+	}
 	public String getTitleName(){
 		return "New " + className;
+	}
+	protected boolean checkName(){
+		boolean isCorrect = false;
+		nameInput.setText(nameInput.getText().trim());
+		if(!nameInput.getText().isEmpty()){
+			isCorrect = true;
+		}
+		
+		return isCorrect;
 	}
 	public String getName(){
 		return nameInput.getText();
 	}
+	protected JLabel getNameLabel(){
+		return nameText;
+	}
 	public JPanel getMainPanel(){
 		return mainPanel;
 	}
+	protected void setError(Component p,String error){
+		if(p instanceof JLabel){
+			((JLabel)p).setForeground(Color.RED);
+		}
+		showErrorPane(error);
+	}
+	private void showErrorPane(String error){
+		JOptionPane.showMessageDialog(this, error);
+	}
 	public abstract Valuable getValuable();
+	
+	public abstract boolean checkInput();
 }

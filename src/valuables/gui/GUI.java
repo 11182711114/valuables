@@ -283,10 +283,12 @@ public class GUI{ //FIXME bad code consistency
 													JOptionPane.OK_CANCEL_OPTION
 												);
 		if(svar == JOptionPane.OK_OPTION){
-			Device d = (Device)newDeviceDialog.getValuable();
-			System.out.println(d.toString() + "\n" + d.toPrint());
-			if(d != null){
-				valuableHandler.addValuable(d);
+			if(newDeviceDialog.checkInput()){
+				Device d = (Device)newDeviceDialog.getValuable();
+				System.out.println(d.toString() + "\n" + d.toPrint());
+				if(d != null){
+					valuableHandler.addValuable(d);
+				}
 			}
 		}		
 	}
