@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import javax.swing.SwingUtilities;
+
 import valuables.gui.GUI;
 import valuables.items.Stock;
 import valuables.items.Valuable;
@@ -11,26 +13,28 @@ import valuables.items.Valuable;
 /* ##################
  * #      TODO      #
  * ##################
- * # switch storage #
- * ##################
+ * 
  * 
  * 
  */
-
-
 
 public class ValuableHandler{
 	public static final int SORT_BY_NAME = 0;
 	public static final int SORT_BY_VALUE = 1;
 	private GUI gui;
+	private ValuableHandler var = this;
 	
 	private ArrayList<Valuable> valuables = new ArrayList<>();
 	
 	public ValuableHandler(){
 	}
 	public void startGUI(){
-		gui = new GUI(this);
-		gui.run();
+		SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				gui = new GUI(var);
+				gui.run();
+			}
+		});
 	}
 
 	public ArrayList<Valuable> getValuables() {

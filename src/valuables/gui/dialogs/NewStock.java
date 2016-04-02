@@ -9,39 +9,40 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import valuables.items.Device;
+import valuables.items.Stock;
 import valuables.items.Valuable;
 
 @SuppressWarnings("serial")
-public class NewDevice extends NewValuable{
+public class NewStock extends NewValuable{
 	
-	private JLabel originalValueText = new JLabel("Original value:");
-	private JTextField originalValueInput = new JTextField(10);
-	private JLabel wearText = new JLabel("Condition:");
-	private JTextField wearInput = new JTextField(10);
+	private JLabel exchangeRateText = new JLabel("Exchange rate:");
+	private JTextField exchangeRateInput = new JTextField(10);
+	private JLabel numberOfStocksText = new JLabel("Number of stocks:");
+	private JTextField numberOfStocksInput = new JTextField(10);
 	
-	public NewDevice(){
+	public NewStock(){
 		super();
 		JPanel mainPanel = getMainPanel();
-		mainPanel.add(getValuePanel());
-		mainPanel.add(getWearPanel());
+		mainPanel.add(getExchangePanel());
+		mainPanel.add(getNumberPanel());
 		mainPanel.setVisible(true);
 	}
-	private JPanel getValuePanel(){
+	private JPanel getExchangePanel(){
 		JPanel valuePanel = new JPanel(new FlowLayout());
-		valuePanel.add(originalValueText);
-		valuePanel.add(originalValueInput);		
+		valuePanel.add(exchangeRateText);
+		valuePanel.add(exchangeRateInput);		
 		return valuePanel;
 	}
-	private JPanel getWearPanel(){
+	private JPanel getNumberPanel(){
 		JPanel wearPanel = new JPanel(new FlowLayout());
-		wearPanel.add(wearText);
-		wearPanel.add(wearInput);
+		wearPanel.add(numberOfStocksText);
+		wearPanel.add(numberOfStocksInput);
 		return wearPanel;
 	}
-	public double getOriginalValue(){
+	public double getExchangeRate(){
 		double output = -1;
 		try{
-			output = Integer.parseInt(originalValueInput.getText());
+			output = Integer.parseInt(exchangeRateInput.getText());
 		}
 		catch(NumberFormatException e){
 			
@@ -51,7 +52,7 @@ public class NewDevice extends NewValuable{
 	public int getWear(){
 		int output = -1;
 		try{
-			output = Integer.parseInt(wearInput.getText());
+			output = Integer.parseInt(numberOfStocksInput.getText());
 		}
 		catch(NumberFormatException e){
 			
@@ -60,13 +61,13 @@ public class NewDevice extends NewValuable{
 	}
 	@Override
 	public Valuable getValuable() {
-		Device device = null;
+		Stock stock = null;
 		String name = getName();
-		double originalValue = roundDouble(getOriginalValue());
-		int wear = getWear();
-		device = new Device(name, originalValue, wear);
+		double exchangeRate = roundDouble(getExchangeRate());
+		int amountOfStock = getWear();
+		stock = new Stock(name, amountOfStock, exchangeRate);
 		
-		return device;
+		return stock;
 	}
 	private double roundDouble(double d){
 		DecimalFormat df = new DecimalFormat("#.##");
@@ -84,11 +85,11 @@ public class NewDevice extends NewValuable{
 					return true;
 				}
 				else{
-					this.setError(wearInput, "Wear must be an integer 1-10!");
+					this.setError(numberOfStocksInput, "Number of stocks must be an integer!");
 				}
 			}
 			else{
-				this.setError(originalValueText, "Value must be a number!");
+				this.setError(exchangeRateText, "Exchange must be a number!");
 			}
 		}
 		else{
@@ -99,7 +100,7 @@ public class NewDevice extends NewValuable{
 	private boolean checkValue(){
 		boolean isCorrect = false;
 		try{
-			if(Double.parseDouble(originalValueInput.getText().trim())>0)
+			if(Double.parseDouble(exchangeRateInput.getText().trim())>0)
 				isCorrect = true;
 			}
 		catch(NumberFormatException e){}
@@ -109,8 +110,7 @@ public class NewDevice extends NewValuable{
 		boolean isCorrect = false;
 		
 		try{
-			int wear = Integer.parseInt(wearInput.getText().trim());
-			if(wear>=1 && wear<=10)
+			if(Integer.parseInt(numberOfStocksInput.getText().trim())>0)
 				isCorrect = true;
 		}
 		catch(NumberFormatException e){}

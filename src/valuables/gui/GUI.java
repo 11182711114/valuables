@@ -28,7 +28,8 @@ import javax.swing.ScrollPaneConstants;
 
 import valuables.ValuableHandler;
 import valuables.gui.dialogs.NewDevice;
-import valuables.gui.dialogs.NewValuable;
+import valuables.gui.dialogs.NewJewelry;
+import valuables.gui.dialogs.NewStock;
 import valuables.items.*;
 
 public class GUI{ //FIXME bad code consistency
@@ -67,7 +68,7 @@ public class GUI{ //FIXME bad code consistency
 	private void configureMainWindow(){
 		mainWindow.setTitle("Valuable Register");
 		mainWindow.setResizable(true);
-		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mainWindow.setSize(frameWidth,frameHeight);
 		centerFrameOnDefaultMonitor();
 		setDefaultView();
@@ -75,29 +76,7 @@ public class GUI{ //FIXME bad code consistency
 	}
 	private void setDefaultView(){
 		GridBagLayout layout = new GridBagLayout();
-		defaultView = new JPanel(layout);
-	//	{
-	//
-	//        @Override
-	//        public void paint(Graphics g){
-	//            super.paint(g);
-	//            int[][] dims = layout.getLayoutDimensions();
-	//            g.setColor(Color.RED);
-	//            int x = 0;
-	//            for (int add : dims[0]){
-	//                x += add;
-	//                g.drawLine(x, 0, x, getHeight());
-	//            }
-	//            int y = 0;
-	//            for (int add : dims[1]){
-	//                y += add;
-	//                g.drawLine(0, y, getWidth(), y);
-	//            }
-	//        }
-	//
-	//    };
-		//panel.setBackground(Color.green); //debugging
-		
+		defaultView = new JPanel(layout);		
 		defaultView.setPreferredSize(new Dimension(frameWidth,frameHeight));
 		addFrameLayout(defaultView);
 	}
@@ -223,8 +202,10 @@ public class GUI{ //FIXME bad code consistency
 						showNewDeviceDialog();
 						break;
 					case "Stock":
+						showNewStockDialog();
 						break;
 					case "Jewelry":
+						showNewJewelryDialog();
 						break;
 					}
 				}
@@ -288,6 +269,42 @@ public class GUI{ //FIXME bad code consistency
 				System.out.println(d.toString() + "\n" + d.toPrint());
 				if(d != null){
 					valuableHandler.addValuable(d);
+				}
+			}
+		}		
+	}
+	private void showNewStockDialog(){
+		NewStock newStockDialog = new NewStock();
+		int svar = NewDevice.showConfirmDialog(
+													mainWindow,
+													newStockDialog.getMainPanel(),
+													newStockDialog.getTitleName(),
+													JOptionPane.OK_CANCEL_OPTION
+												);
+		if(svar == JOptionPane.OK_OPTION){
+			if(newStockDialog.checkInput()){
+				Stock stock = (Stock)newStockDialog.getValuable();
+				System.out.println(stock.toString() + "\n" + stock.toPrint());
+				if(stock != null){
+					valuableHandler.addValuable(stock);
+				}
+			}
+		}		
+	}
+	private void showNewJewelryDialog(){
+		NewJewelry newJewelryDialog = new NewJewelry();
+		int svar = NewDevice.showConfirmDialog(
+													mainWindow,
+													newJewelryDialog.getMainPanel(),
+													newJewelryDialog.getTitleName(),
+													JOptionPane.OK_CANCEL_OPTION
+												);
+		if(svar == JOptionPane.OK_OPTION){
+			if(newJewelryDialog.checkInput()){
+				Jewelry jewelry = (Jewelry)newJewelryDialog.getValuable();
+				System.out.println(jewelry.toString() + "\n" + jewelry.toPrint());
+				if(jewelry != null){
+					valuableHandler.addValuable(jewelry);
 				}
 			}
 		}		
