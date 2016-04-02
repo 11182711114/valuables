@@ -17,8 +17,8 @@ public abstract class NewValuable extends JOptionPane{
 	private JTextField nameInput = new JTextField(10);
 	JPanel mainPanel = new JPanel();
 	
-	private String fullClassName = this.getClass().getName();								//gets the full class path as string
-	private String className = fullClassName.substring(fullClassName.lastIndexOf(".New")+4);	//trims fullClassName to after last '.'(i.e. only the class name)
+	private String fullClassName = this.getClass().getName(); //gets the full class path as string
+	private String className = fullClassName.substring(fullClassName.lastIndexOf(".New")+4); //trims fullClassName to after last '.'(i.e. only the class name)
 	
 	public NewValuable(){
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
