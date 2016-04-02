@@ -14,7 +14,6 @@ public class ValuableHandler{
 	public static final int SORT_BY_NAME = 0;
 	public static final int SORT_BY_VALUE = 1;
 	private GUI gui;
-	private ValuableHandler var = this;
 	
 	private ArrayList<Valuable> valuables = new ArrayList<>();
 	
@@ -23,7 +22,7 @@ public class ValuableHandler{
 	public void startGUI(){
 		SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
-				gui = new GUI(var);
+				gui = new GUI(ValuableHandler.this);
 				gui.run();
 			}
 		});
