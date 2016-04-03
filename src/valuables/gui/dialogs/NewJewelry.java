@@ -25,7 +25,7 @@ public class NewJewelry extends NewValuable{
 		mainPanel.setVisible(true);
 	}
 	private JPanel getNumberOfStonesPanel(){
-		JPanel valuePanel = new JPanel(new FlowLayout());
+		JPanel valuePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		valuePanel.add(numberOfStonesText);
 		valuePanel.add(numberOfStones);		
 		return valuePanel;

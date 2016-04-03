@@ -28,13 +28,13 @@ public class NewStock extends NewValuable{
 		mainPanel.setVisible(true);
 	}
 	private JPanel getExchangePanel(){
-		JPanel valuePanel = new JPanel(new FlowLayout());
+		JPanel valuePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		valuePanel.add(exchangeRateText);
 		valuePanel.add(exchangeRateInput);		
 		return valuePanel;
 	}
 	private JPanel getNumberPanel(){
-		JPanel wearPanel = new JPanel(new FlowLayout());
+		JPanel wearPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		wearPanel.add(numberOfStocksText);
 		wearPanel.add(numberOfStocksInput);
 		return wearPanel;

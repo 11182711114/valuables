@@ -24,16 +24,15 @@ public class NewDevice extends NewValuable{
 		JPanel mainPanel = getMainPanel();
 		mainPanel.add(getValuePanel());
 		mainPanel.add(getWearPanel());
-		mainPanel.setVisible(true);
 	}
 	private JPanel getValuePanel(){
-		JPanel valuePanel = new JPanel(new FlowLayout());
+		JPanel valuePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		valuePanel.add(originalValueText);
 		valuePanel.add(originalValueInput);		
 		return valuePanel;
 	}
 	private JPanel getWearPanel(){
-		JPanel wearPanel = new JPanel(new FlowLayout());
+		JPanel wearPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		wearPanel.add(wearText);
 		wearPanel.add(wearInput);
 		return wearPanel;

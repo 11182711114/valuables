@@ -257,7 +257,7 @@ public class GUI{ //FIXME bad code consistency
 	}
 	private void showNewDeviceDialog(){
 		NewDevice newDeviceDialog = new NewDevice();
-		int svar = NewDevice.showConfirmDialog(
+		int svar = JOptionPane.showConfirmDialog(
 													mainWindow,
 													newDeviceDialog.getMainPanel(),
 													newDeviceDialog.getTitleName(),
@@ -273,9 +273,15 @@ public class GUI{ //FIXME bad code consistency
 			}
 		}		
 	}
-	private void showNewStockDialog(){
+	private void showNewStockDialog(){ 
+		/*
+		 * weird way of doing things;
+		 * showConfirmDialog is static
+		 * pass JPanels from non-static object that inherits from JOptionPane for no reason
+		 * solv: NewXxx extends JOptionPane -> NewXxxHandler
+		 */
 		NewStock newStockDialog = new NewStock();
-		int svar = NewDevice.showConfirmDialog(
+		int svar = JOptionPane.showConfirmDialog(
 													mainWindow,
 													newStockDialog.getMainPanel(),
 													newStockDialog.getTitleName(),
@@ -293,7 +299,7 @@ public class GUI{ //FIXME bad code consistency
 	}
 	private void showNewJewelryDialog(){
 		NewJewelry newJewelryDialog = new NewJewelry();
-		int svar = NewDevice.showConfirmDialog(
+		int svar = JOptionPane.showConfirmDialog(
 													mainWindow,
 													newJewelryDialog.getMainPanel(),
 													newJewelryDialog.getTitleName(),
