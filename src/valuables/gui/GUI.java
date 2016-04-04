@@ -258,13 +258,7 @@ public class GUI{ //FIXME bad code consistency
 			}
 		}		
 	}
-	private void showNewStockDialog(){ 
-		/*
-		 * weird way of doing things;
-		 * showConfirmDialog is static
-		 * pass JPanels from non-static object that inherits from JOptionPane for no reason
-		 * solv: NewXxx extends JOptionPane -> NewXxxHandler
-		 */
+	private void showNewStockDialog(){
 		NewStock newStockDialog = new NewStock(mainWindow);
 		int svar = JOptionPane.showConfirmDialog(
 													mainWindow,

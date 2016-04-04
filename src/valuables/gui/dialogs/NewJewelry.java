@@ -25,16 +25,16 @@ public class NewJewelry extends NewValuable{
 		mainPanel.setVisible(true);
 	}
 	private JPanel getNumberOfStonesPanel(){
-		JPanel valuePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		valuePanel.add(numberOfStonesText);
-		valuePanel.add(numberOfStones);		
-		return valuePanel;
+		JPanel stonesPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		stonesPanel.add(numberOfStonesText);
+		stonesPanel.add(numberOfStones);		
+		return stonesPanel;
 	}
 	private JPanel getGoldCheckboxPanel(){
-		JPanel wearPanel = new JPanel(new FlowLayout());
-		wearPanel.add(isGoldText);
-		wearPanel.add(isGold);
-		return wearPanel;
+		JPanel goldPanel = new JPanel(new FlowLayout());
+		goldPanel.add(isGoldText);
+		goldPanel.add(isGold);
+		return goldPanel;
 	}
 	public int getOriginalValue(){
 		int output = -1;
@@ -64,7 +64,7 @@ public class NewJewelry extends NewValuable{
 				return true;
 			}
 			else{
-				this.setError("Number of stones must be an integer!");
+				this.setError("Number of stones must be an integer >=0!");
 			}
 		}
 		else{
@@ -75,7 +75,7 @@ public class NewJewelry extends NewValuable{
 	private boolean checkStones(){
 		boolean isCorrect = false;
 		try{
-			if(Integer.parseInt(numberOfStones.getText().trim())>0)
+			if(Integer.parseInt(numberOfStones.getText().trim())>=0)
 				isCorrect = true;
 			}
 		catch(NumberFormatException e){}
