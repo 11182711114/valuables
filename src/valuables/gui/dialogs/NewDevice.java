@@ -1,5 +1,6 @@
 package valuables.gui.dialogs;
 
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -11,7 +12,6 @@ import javax.swing.JTextField;
 import valuables.items.Device;
 import valuables.items.Valuable;
 
-@SuppressWarnings("serial")
 public class NewDevice extends NewValuable{
 	
 	private JLabel originalValueText = new JLabel("Original value:");
@@ -19,8 +19,8 @@ public class NewDevice extends NewValuable{
 	private JLabel wearText = new JLabel("Condition:");
 	private JTextField wearInput = new JTextField(10);
 	
-	public NewDevice(){
-		super();
+	public NewDevice(Component parent){
+		super(parent);
 		JPanel mainPanel = getMainPanel();
 		mainPanel.add(getValuePanel());
 		mainPanel.add(getWearPanel());
@@ -83,15 +83,15 @@ public class NewDevice extends NewValuable{
 					return true;
 				}
 				else{
-					this.setError(wearInput, "Wear must be an integer 1-10!");
+					this.setError("Wear must be an integer 1-10!");
 				}
 			}
 			else{
-				this.setError(originalValueText, "Value must be a number!");
+				this.setError("Value must be a number!");
 			}
 		}
 		else{
-			this.setError(getNameLabel(), "Names cannot be empty!");
+			this.setError("Names cannot be empty!");
 		}
 		return false;
 	}

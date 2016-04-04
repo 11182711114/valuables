@@ -1,5 +1,6 @@
 package valuables.gui.dialogs;
 
+import java.awt.Component;
 import java.awt.FlowLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -9,7 +10,6 @@ import javax.swing.JTextField;
 import valuables.items.Jewelry;
 import valuables.items.Valuable;
 
-@SuppressWarnings("serial")
 public class NewJewelry extends NewValuable{
 	
 	private JLabel numberOfStonesText = new JLabel("Number of stones:");
@@ -17,8 +17,8 @@ public class NewJewelry extends NewValuable{
 	private JLabel isGoldText = new JLabel("Gold:");
 	private JCheckBox isGold = new JCheckBox();
 	
-	public NewJewelry(){
-		super();
+	public NewJewelry(Component parent){
+		super(parent);
 		JPanel mainPanel = getMainPanel();
 		mainPanel.add(getNumberOfStonesPanel());
 		mainPanel.add(getGoldCheckboxPanel());
@@ -64,11 +64,11 @@ public class NewJewelry extends NewValuable{
 				return true;
 			}
 			else{
-				this.setError(numberOfStonesText, "Number of stones must be an integer!");
+				this.setError("Number of stones must be an integer!");
 			}
 		}
 		else{
-			this.setError(getNameLabel(), "Names cannot be empty!");
+			this.setError("Names cannot be empty!");
 		}
 		return false;
 	}

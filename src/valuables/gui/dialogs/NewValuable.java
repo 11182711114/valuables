@@ -1,6 +1,5 @@
 package valuables.gui.dialogs;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
@@ -19,7 +18,10 @@ public abstract class NewValuable{
 	private String fullClassName = this.getClass().getName(); //gets the full class path as string
 	private String className = fullClassName.substring(fullClassName.lastIndexOf(".New")+4); //trims fullClassName to after last '.'(i.e. only the class name)
 	
-	public NewValuable(){
+	private Component parent;
+	
+	public NewValuable(Component parent){
+		this.parent = parent;
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		JPanel namePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		namePanel.add(nameText);
@@ -47,14 +49,11 @@ public abstract class NewValuable{
 	public JPanel getMainPanel(){
 		return mainPanel;
 	}
-	protected void setError(Component p,String error){
-		if(p instanceof JLabel){
-			((JLabel)p).setForeground(Color.RED);
-		}
-		showErrorPane(p,error);
+	protected void setError(String error){
+		showErrorPane(error);
 	}
-	private void showErrorPane(Component p,String error){
-		JOptionPane.showMessageDialog(p, error);
+	private void showErrorPane(String error){
+		JOptionPane.showMessageDialog(parent, error,"Error",JOptionPane.ERROR_MESSAGE);
 	}
 	public abstract Valuable getValuable();
 	

@@ -1,5 +1,6 @@
 package valuables.gui.dialogs;
 
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -8,11 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import valuables.items.Device;
 import valuables.items.Stock;
 import valuables.items.Valuable;
 
-@SuppressWarnings("serial")
 public class NewStock extends NewValuable{
 	
 	private JLabel exchangeRateText = new JLabel("Exchange rate:");
@@ -20,8 +19,8 @@ public class NewStock extends NewValuable{
 	private JLabel numberOfStocksText = new JLabel("Number of stocks:");
 	private JTextField numberOfStocksInput = new JTextField(10);
 	
-	public NewStock(){
-		super();
+	public NewStock(Component parent){
+		super(parent);
 		JPanel mainPanel = getMainPanel();
 		mainPanel.add(getExchangePanel());
 		mainPanel.add(getNumberPanel());
@@ -85,15 +84,15 @@ public class NewStock extends NewValuable{
 					return true;
 				}
 				else{
-					this.setError(numberOfStocksInput, "Number of stocks must be an integer!");
+					this.setError("Number of stocks must be an integer!");
 				}
 			}
 			else{
-				this.setError(exchangeRateText, "Exchange must be a number!");
+				this.setError("Exchange must be a number!");
 			}
 		}
 		else{
-			this.setError(getNameLabel(), "Names cannot be empty!");
+			this.setError("Names cannot be empty!");
 		}
 		return false;
 	}

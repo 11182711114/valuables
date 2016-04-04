@@ -256,7 +256,7 @@ public class GUI{ //FIXME bad code consistency
 		});
 	}
 	private void showNewDeviceDialog(){
-		NewDevice newDeviceDialog = new NewDevice();
+		NewDevice newDeviceDialog = new NewDevice(mainWindow);
 		int svar = JOptionPane.showConfirmDialog(
 													mainWindow,
 													newDeviceDialog.getMainPanel(),
@@ -280,7 +280,7 @@ public class GUI{ //FIXME bad code consistency
 		 * pass JPanels from non-static object that inherits from JOptionPane for no reason
 		 * solv: NewXxx extends JOptionPane -> NewXxxHandler
 		 */
-		NewStock newStockDialog = new NewStock();
+		NewStock newStockDialog = new NewStock(mainWindow);
 		int svar = JOptionPane.showConfirmDialog(
 													mainWindow,
 													newStockDialog.getMainPanel(),
@@ -298,7 +298,7 @@ public class GUI{ //FIXME bad code consistency
 		}		
 	}
 	private void showNewJewelryDialog(){
-		NewJewelry newJewelryDialog = new NewJewelry();
+		NewJewelry newJewelryDialog = new NewJewelry(mainWindow);
 		int svar = JOptionPane.showConfirmDialog(
 													mainWindow,
 													newJewelryDialog.getMainPanel(),
