@@ -250,7 +250,6 @@ public class GUI{ //FIXME bad code consistency
 		if(svar == JOptionPane.OK_OPTION){
 			if(newDeviceDialog.checkInput()){
 				Device d = (Device)newDeviceDialog.getValuable();
-				System.out.println(d.toString() + "\n" + d.toPrint());
 				if(d != null){
 					valuableHandler.addValuable(d);
 				}
@@ -274,7 +273,6 @@ public class GUI{ //FIXME bad code consistency
 		if(svar == JOptionPane.OK_OPTION){
 			if(newStockDialog.checkInput()){
 				Stock stock = (Stock)newStockDialog.getValuable();
-				System.out.println(stock.toString() + "\n" + stock.toPrint());
 				if(stock != null){
 					valuableHandler.addValuable(stock);
 				}
@@ -292,7 +290,6 @@ public class GUI{ //FIXME bad code consistency
 		if(svar == JOptionPane.OK_OPTION){
 			if(newJewelryDialog.checkInput()){
 				Jewelry jewelry = (Jewelry)newJewelryDialog.getValuable();
-				System.out.println(jewelry.toString() + "\n" + jewelry.toPrint());
 				if(jewelry != null){
 					valuableHandler.addValuable(jewelry);
 				}
