@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Enumeration;
+import java.util.EventObject;
 
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -206,6 +207,7 @@ public class GUI{ //FIXME bad code consistency
 						showNewJewelryDialog();
 						break;
 					}
+					((JComboBox)e.getSource()).setSelectedIndex(-1);
 				}
 			}
 		});
