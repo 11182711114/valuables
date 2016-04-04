@@ -51,10 +51,10 @@ public class ValuableHandler{
 	}
 	public void sortValuables(int method){
 		switch(method){
-		case 0:
+		case SORT_BY_NAME:
 			Collections.sort(valuables,new NameComparator());
 			break;
-		case 1:
+		case SORT_BY_VALUE:
 			Collections.sort(valuables, new ValueComparator());
 			break;
 		}

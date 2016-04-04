@@ -301,6 +301,5 @@ public class GUI{ //FIXME bad code consistency
 	}
 	public JFrame getFrame(){
 		return mainWindow;
-	}
-	
+	}	
 }
