@@ -194,9 +194,7 @@ public class GUI{ //FIXME bad code consistency
 		valuable.addItemListener(new ItemListener(){
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				System.out.println(e);
 				if(e.getStateChange() == ItemEvent.SELECTED){
-					System.out.println(e.getItem());
 					switch(e.getItem().toString()){
 					case "Device":
 						showNewDeviceDialog();
@@ -211,20 +209,6 @@ public class GUI{ //FIXME bad code consistency
 				}
 			}
 		});
-		
-//		sortValue.addItemListener(new ItemListener(){
-//
-//			@Override
-//			public void itemStateChanged(ItemEvent e) {
-//				if(e.getStateChange() == ItemEvent.SELECTED){
-//					valuableHandler.sortArray(1);
-//				}
-//				else{
-//					valuableHandler.sortArray(0);
-//				}
-//				
-//			}
-//		});
 		
 		showValuables.addActionListener(new ActionListener(){
 			@Override
