@@ -1,6 +1,7 @@
 package valuables.gui;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
@@ -14,6 +15,7 @@ import java.util.Enumeration;
 import java.util.EventObject;
 
 import javax.swing.AbstractButton;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -143,50 +145,39 @@ public class GUI{ //FIXME bad code consistency
 		return panel;
 	}
 	private JPanel getRadioButtons(){
-		JPanel radioButtonPanel = new JPanel(new GridBagLayout());
+		JPanel radioButtonPanel = new JPanel();
+		radioButtonPanel.setAlignmentY(JPanel.BOTTOM_ALIGNMENT);
+		BoxLayout layout = new BoxLayout(radioButtonPanel, BoxLayout.Y_AXIS);
+		radioButtonPanel.setLayout(layout);
+		
 		radioButtonGroup = new ButtonGroup();
 		
 		radioGroupLabel = new JLabel("Sort by");
-		GridBagConstraints radioButtonConstraints = new GridBagConstraints();
-		radioButtonConstraints.fill = GridBagConstraints.NONE;
-		radioButtonConstraints.anchor = GridBagConstraints.SOUTH;
-		radioButtonConstraints.gridx = 0;
-		radioButtonConstraints.gridy = 0;
-		radioButtonPanel.add(radioGroupLabel,radioButtonConstraints);
+		radioButtonPanel.add(radioGroupLabel);
 		
 		sortName = new JRadioButton("Name");
 		sortName.setSelected(true); //start of sorted by name
 		radioButtonGroup.add(sortName);
-		radioButtonConstraints.gridy = 1;
-		radioButtonPanel.add(sortName,radioButtonConstraints);
+		radioButtonPanel.add(sortName);
 		
 		sortValue = new JRadioButton("Value");
 		radioButtonGroup.add(sortValue);
-		radioButtonConstraints.gridy = 2;
-		radioButtonPanel.add(sortValue,radioButtonConstraints);
+		radioButtonPanel.add(sortValue);
 		
 		return radioButtonPanel;
 	}
 	private JPanel getBottomBar(){
-		GridBagLayout layout = new GridBagLayout();
+		FlowLayout layout = new FlowLayout(FlowLayout.RIGHT);
 		JPanel bottom = new JPanel(layout);	
-		GridBagConstraints lowerBarConstraints = new GridBagConstraints();
-		
 		valuable = new JComboBox(new DefaultComboBoxModel(ALLOWED_VALUABLES));
 		valuable.setSelectedIndex(-1);	
-		lowerBarConstraints.fill = GridBagConstraints.NONE;
-		lowerBarConstraints.insets = new Insets(3,10,3,0);
-		lowerBarConstraints.gridx = 0;
-		lowerBarConstraints.gridy = 0;
-		bottom.add(valuable,lowerBarConstraints);
+		bottom.add(valuable);
 		
 		showValuables = new JButton("Show");
-		lowerBarConstraints.gridx = 1;
-		bottom.add(showValuables,lowerBarConstraints);
+		bottom.add(showValuables);
 		
 		marketCrash = new JButton("Market crash");
-		lowerBarConstraints.gridx = 2;
-		bottom.add(marketCrash,lowerBarConstraints);
+		bottom.add(marketCrash);
 		
 		addFunctionality();
 		return bottom;
