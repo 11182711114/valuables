@@ -1,5 +1,8 @@
 package valuables.items;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public abstract class Valuable{
 	private static final double TAX_PERCENTAGE = 1.25;
 	
@@ -20,9 +23,16 @@ public abstract class Valuable{
 		return name;
 	}
 	abstract public double getValuePreTax();
-	
+	protected double roundDouble(double d){
+		DecimalFormat df = new DecimalFormat("#.##");
+		df.setRoundingMode(RoundingMode.CEILING);
+		
+		double roundedDouble = Double.parseDouble(df.format(d));
+		return roundedDouble;
+	}
 	public String toPrint(){
-		String output = className +": "+ getName() +" "+ getValuePostTax() +" ";
+		Double value = roundDouble(getValuePostTax());
+		String output = className +": "+ getName() +" "+ value +" ";
 		for(String s : getSpecialVariables()){
 			output+=s+" ";
 		}

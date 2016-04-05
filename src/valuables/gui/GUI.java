@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
@@ -49,19 +51,15 @@ public class GUI{ //FIXME bad code consistency
 	private JComboBox<String> valuable;
 	private JTextArea outputTextArea;
 	private JRadioButton sortName, sortValue;
-	private JLabel radioGroupLabel, textAreaLabel;
+	private JLabel radioGroupLabel, textAreaLabel,newValuableLabel;
 	
 	
 	public GUI(ValuableHandler valuableHandler){
 		this.valuableHandler = valuableHandler;
 		mainWindow = new JFrame();
+		configureMainWindow();
 	}
 	public void run(){
-		initialize();
-	}
-	
-	private void initialize(){
-		configureMainWindow();
 		mainWindow.setVisible(true);
 	}
 	private void configureMainWindow(){
@@ -165,8 +163,11 @@ public class GUI{ //FIXME bad code consistency
 	private JPanel getBottomBar(){
 		FlowLayout layout = new FlowLayout(FlowLayout.RIGHT);
 		JPanel bottom = new JPanel(layout);	
-		valuable = new JComboBox<String>(new DefaultComboBoxModel<String>(ALLOWED_VALUABLES));
-		valuable.setSelectedIndex(-1);	
+		
+		newValuableLabel = new JLabel("New:");
+		bottom.add(newValuableLabel);
+		
+		valuable = new JComboBox<String>(ALLOWED_VALUABLES);
 		bottom.add(valuable);
 		
 		showValuables = new JButton("Show");
@@ -179,14 +180,11 @@ public class GUI{ //FIXME bad code consistency
 		return bottom;
 	}
 	private void addListeners(){
-		valuable.addItemListener(new ItemListener(){
+		valuable.addActionListener(new ActionListener(){
 			@Override
-			public void itemStateChanged(ItemEvent e){
-				if(e.getStateChange() == ItemEvent.SELECTED){
-					showNewDialog(e.getItem().toString());
-					
-					((JComboBox<String>)e.getSource()).setSelectedIndex(-1);
-				}
+			public void actionPerformed(ActionEvent e){
+				String selected = ((JComboBox<String>) e.getSource()).getSelectedItem().toString();
+				showNewDialog(selected);
 			}
 		});
 		
@@ -256,7 +254,7 @@ public class GUI{ //FIXME bad code consistency
 	private void writeToTextArea(){
 		outputTextArea.setText("");
 		for(Valuable var : valuableHandler.getValuables()){
-			outputTextArea.append(var.toPrint() + newLine);
+			outputTextArea.append(var.toPrint() + "\n");
 		}
 		outputTextArea.setCaretPosition(0); //start the scroll bar at the top of the list
 	}

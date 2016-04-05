@@ -61,18 +61,11 @@ public class NewDevice extends NewValuable{
 	public Valuable getValuable() {
 		Device device = null;
 		String name = getName();
-		double originalValue = roundDouble(getOriginalValue());
+		double originalValue = getOriginalValue();
 		int wear = getWear();
 		device = new Device(name, originalValue, wear);
 		
 		return device;
-	}
-	private double roundDouble(double d){
-		DecimalFormat df = new DecimalFormat("#.##");
-		df.setRoundingMode(RoundingMode.CEILING);
-		
-		double roundedDouble = Double.parseDouble(df.format(d));
-		return roundedDouble;
 	}
 	@Override
 	public boolean checkInput() {
