@@ -6,14 +6,11 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Enumeration;
-import java.util.EventObject;
-
 import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -22,7 +19,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -50,7 +46,7 @@ public class GUI{ //FIXME bad code consistency
 	
 	private JButton showValuables,marketCrash;
 	private ButtonGroup radioButtonGroup;
-	private JComboBox valuable;
+	private JComboBox<String> valuable;
 	private JTextArea outputTextArea;
 	private JRadioButton sortName, sortValue;
 	private JLabel radioGroupLabel, textAreaLabel;
@@ -64,7 +60,7 @@ public class GUI{ //FIXME bad code consistency
 		initialize();
 	}
 	
-	public void initialize(){
+	private void initialize(){
 		configureMainWindow();
 		mainWindow.setVisible(true);
 	}
@@ -169,7 +165,7 @@ public class GUI{ //FIXME bad code consistency
 	private JPanel getBottomBar(){
 		FlowLayout layout = new FlowLayout(FlowLayout.RIGHT);
 		JPanel bottom = new JPanel(layout);	
-		valuable = new JComboBox(new DefaultComboBoxModel(ALLOWED_VALUABLES));
+		valuable = new JComboBox<String>(new DefaultComboBoxModel<String>(ALLOWED_VALUABLES));
 		valuable.setSelectedIndex(-1);	
 		bottom.add(valuable);
 		
@@ -187,18 +183,8 @@ public class GUI{ //FIXME bad code consistency
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange() == ItemEvent.SELECTED){
-					switch(e.getItem().toString()){
-					case "Device":
-						showNewDeviceDialog();
-						break;
-					case "Stock":
-						showNewStockDialog();
-						break;
-					case "Jewelry":
-						showNewJewelryDialog();
-						break;
-					}
-					((JComboBox)e.getSource()).setSelectedIndex(-1);
+					showNewDialog(e.getItem().toString());
+					((JComboBox<String>)e.getSource()).setSelectedIndex(-1);
 				}
 			}
 		});
@@ -231,6 +217,19 @@ public class GUI{ //FIXME bad code consistency
 				valuableHandler.marketCrash();
 			}
 		});
+	}
+	private void showNewDialog(String dialogToShow){
+		switch(dialogToShow){
+		case "Device":
+			showNewDeviceDialog();
+			break;
+		case "Jewelry":
+			showNewJewelryDialog();
+			break;
+		case "Stock":
+			showNewStockDialog();
+			break;
+		}
 	}
 	private void showNewDeviceDialog(){
 		NewDevice newDeviceDialog = new NewDevice(mainWindow);
