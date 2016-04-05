@@ -245,28 +245,21 @@ public class GUI{ //FIXME bad code consistency
 		NewDevice newDeviceDialog = new NewDevice(mainWindow);
 		if(newDeviceDialog.showDialog()){
 			Device d = (Device)newDeviceDialog.getValuable();
-			if(d != null){
-				valuableHandler.addValuable(d);
-			}
+			valuableHandler.addValuable(d);			
 		}
-			
 	}
 	private void showNewStockDialog(){
 		NewStock newStockDialog = new NewStock(mainWindow);
 		if(newStockDialog.showDialog()){
 			Stock stock = (Stock)newStockDialog.getValuable();
-			if(stock != null){
-				valuableHandler.addValuable(stock);
-			}
+			valuableHandler.addValuable(stock);
 		}
 	}	
 	private void showNewJewelryDialog(){
 		NewJewelry newJewelryDialog = new NewJewelry(mainWindow);
 		if(newJewelryDialog.showDialog()){
 			Jewelry jewelry = (Jewelry)newJewelryDialog.getValuable();
-			if(jewelry != null){
-				valuableHandler.addValuable(jewelry);
-			}
+			valuableHandler.addValuable(jewelry);
 		}
 	}
 	private void writeToTextArea(){
