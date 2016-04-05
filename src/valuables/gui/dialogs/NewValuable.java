@@ -43,6 +43,20 @@ public abstract class NewValuable{
 	public String getName(){
 		return nameInput.getText();
 	}
+	public boolean showDialog(){
+		int svar = JOptionPane.showConfirmDialog(
+				parent,
+				getMainPanel(),
+				getTitleName(),
+				JOptionPane.OK_CANCEL_OPTION
+			);
+		if(svar == JOptionPane.OK_OPTION){
+			if(checkInput()){
+				return true;
+			}
+		}
+		return false;
+	}
 	protected JLabel getNameLabel(){
 		return nameText;
 	}

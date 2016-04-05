@@ -243,54 +243,31 @@ public class GUI{ //FIXME bad code consistency
 	}
 	private void showNewDeviceDialog(){
 		NewDevice newDeviceDialog = new NewDevice(mainWindow);
-		int svar = JOptionPane.showConfirmDialog(
-													mainWindow,
-													newDeviceDialog.getMainPanel(),
-													newDeviceDialog.getTitleName(),
-													JOptionPane.OK_CANCEL_OPTION
-												);
-		if(svar == JOptionPane.OK_OPTION){
-			if(newDeviceDialog.checkInput()){
-				Device d = (Device)newDeviceDialog.getValuable();
-				if(d != null){
-					valuableHandler.addValuable(d);
-				}
+		if(newDeviceDialog.showDialog()){
+			Device d = (Device)newDeviceDialog.getValuable();
+			if(d != null){
+				valuableHandler.addValuable(d);
 			}
-		}		
+		}
+			
 	}
 	private void showNewStockDialog(){
 		NewStock newStockDialog = new NewStock(mainWindow);
-		int svar = JOptionPane.showConfirmDialog(
-													mainWindow,
-													newStockDialog.getMainPanel(),
-													newStockDialog.getTitleName(),
-													JOptionPane.OK_CANCEL_OPTION
-												);
-		if(svar == JOptionPane.OK_OPTION){
-			if(newStockDialog.checkInput()){
-				Stock stock = (Stock)newStockDialog.getValuable();
-				if(stock != null){
-					valuableHandler.addValuable(stock);
-				}
+		if(newStockDialog.showDialog()){
+			Stock stock = (Stock)newStockDialog.getValuable();
+			if(stock != null){
+				valuableHandler.addValuable(stock);
 			}
-		}		
-	}
+		}
+	}	
 	private void showNewJewelryDialog(){
 		NewJewelry newJewelryDialog = new NewJewelry(mainWindow);
-		int svar = JOptionPane.showConfirmDialog(
-													mainWindow,
-													newJewelryDialog.getMainPanel(),
-													newJewelryDialog.getTitleName(),
-													JOptionPane.OK_CANCEL_OPTION
-												);
-		if(svar == JOptionPane.OK_OPTION){
-			if(newJewelryDialog.checkInput()){
-				Jewelry jewelry = (Jewelry)newJewelryDialog.getValuable();
-				if(jewelry != null){
-					valuableHandler.addValuable(jewelry);
-				}
+		if(newJewelryDialog.showDialog()){
+			Jewelry jewelry = (Jewelry)newJewelryDialog.getValuable();
+			if(jewelry != null){
+				valuableHandler.addValuable(jewelry);
 			}
-		}		
+		}
 	}
 	private void writeToTextArea(){
 		outputTextArea.setText("");
