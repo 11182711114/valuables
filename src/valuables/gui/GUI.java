@@ -175,15 +175,16 @@ public class GUI{ //FIXME bad code consistency
 		marketCrash = new JButton("Market crash");
 		bottom.add(marketCrash);
 		
-		addFunctionality();
+		addListeners();
 		return bottom;
 	}
-	private void addFunctionality(){
+	private void addListeners(){
 		valuable.addItemListener(new ItemListener(){
 			@Override
-			public void itemStateChanged(ItemEvent e) {
+			public void itemStateChanged(ItemEvent e){
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					showNewDialog(e.getItem().toString());
+					
 					((JComboBox<String>)e.getSource()).setSelectedIndex(-1);
 				}
 			}
