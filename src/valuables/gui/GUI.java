@@ -235,8 +235,8 @@ public class GUI{ //FIXME bad code consistency
 	private void showNewDeviceDialog(){
 		NewDevice newDeviceDialog = new NewDevice(mainWindow);
 		if(newDeviceDialog.showDialog()){
-			Device d = (Device)newDeviceDialog.getValuable();
-			valuableHandler.addValuable(d);			
+			Device device = (Device)newDeviceDialog.getValuable();
+			valuableHandler.addValuable(device);			
 		}
 	}
 	private void showNewStockDialog(){
