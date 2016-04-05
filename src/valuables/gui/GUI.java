@@ -175,7 +175,7 @@ public class GUI{ //FIXME bad code consistency
 		valuable = new JComboBox(new DefaultComboBoxModel(ALLOWED_VALUABLES));
 		valuable.setSelectedIndex(-1);	
 		lowerBarConstraints.fill = GridBagConstraints.NONE;
-		lowerBarConstraints.insets = new Insets(3,5,3,5);
+		lowerBarConstraints.insets = new Insets(3,10,3,0);
 		lowerBarConstraints.gridx = 0;
 		lowerBarConstraints.gridy = 0;
 		bottom.add(valuable,lowerBarConstraints);
