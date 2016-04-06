@@ -32,7 +32,7 @@ public abstract class Valuable{
 	}
 	public String toPrint(){
 		Double value = roundDouble(getValuePostTax());
-		String output = className +": "+ getName() +" "+ value +" ";
+		String output = className +": "+ getName() +" värde:"+ value +" ";
 		for(String s : getSpecialVariables()){
 			output+=s+" ";
 		}
