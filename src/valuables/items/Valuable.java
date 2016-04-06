@@ -2,6 +2,8 @@ package valuables.items;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
 public abstract class Valuable{
 	private static final double TAX_PERCENTAGE = 1.25;
@@ -26,8 +28,13 @@ public abstract class Valuable{
 	protected double roundDouble(double d){
 		DecimalFormat df = new DecimalFormat("#.##");
 		df.setRoundingMode(RoundingMode.CEILING);
-		
-		double roundedDouble = Double.parseDouble(df.format(d));
+		NumberFormat nf = NumberFormat.getInstance();
+		double roundedDouble = 0;
+		try {
+			roundedDouble = nf.parse(df.format(d)).doubleValue();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return roundedDouble;
 	}
 	public String toPrint(){
