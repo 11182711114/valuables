@@ -24,7 +24,6 @@ public class NewStock extends NewValuable{
 		JPanel mainPanel = getMainPanel();
 		mainPanel.add(getExchangePanel());
 		mainPanel.add(getNumberPanel());
-		mainPanel.setVisible(true);
 	}
 	private JPanel getExchangePanel(){
 		JPanel valuePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -84,15 +83,15 @@ public class NewStock extends NewValuable{
 					return true;
 				}
 				else{
-					this.setError("Number of stocks must be an integer!");
+					this.showError("Number of stocks must be an integer!");
 				}
 			}
 			else{
-				this.setError("Exchange must be a number!");
+				this.showError("Exchange must be a number!");
 			}
 		}
 		else{
-			this.setError("Names cannot be empty!");
+			this.showError("Names cannot be empty!");
 		}
 		return false;
 	}

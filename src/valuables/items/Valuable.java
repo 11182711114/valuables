@@ -6,7 +6,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 public abstract class Valuable{
-	private static final double TAX_PERCENTAGE = 1.25;
+	private static final double TAX_MULTIPLIER = 1.25;
 	
 	private String name;
 	
@@ -19,7 +19,7 @@ public abstract class Valuable{
 	}
 	
 	public double getValuePostTax(){
-		return getValuePreTax()*TAX_PERCENTAGE;		
+		return getValuePreTax()*TAX_MULTIPLIER;		
 	}
 	public String getName(){
 		return name;

@@ -76,22 +76,22 @@ public class NewDevice extends NewValuable{
 					return true;
 				}
 				else{
-					this.setError("Wear must be an integer 1-10!");
+					showError("Wear must be an integer 1-10!");
 				}
 			}
 			else{
-				this.setError("Value must be a number!");
+				showError("Value must be a number!");
 			}
 		}
 		else{
-			this.setError("Names cannot be empty!");
+			showError("Names cannot be empty!");
 		}
 		return false;
 	}
 	private boolean checkValue(){
 		boolean isCorrect = false;
 		try{
-			if(Double.parseDouble(originalValueInput.getText().trim())>0)
+			if(Double.parseDouble(originalValueInput.getText())>0)
 				isCorrect = true;
 			}
 		catch(NumberFormatException e){}
@@ -101,7 +101,7 @@ public class NewDevice extends NewValuable{
 		boolean isCorrect = false;
 		
 		try{
-			int wear = Integer.parseInt(wearInput.getText().trim());
+			int wear = Integer.parseInt(wearInput.getText());
 			if(wear>=1 && wear<=10)
 				isCorrect = true;
 		}

@@ -84,7 +84,7 @@ public class ValuableHandler{
 			return output;
 		}
 	}
-	private void test(){
+	public void test(){
 		Random rand = new Random();
 		for(int i = 0; i<=1000; i++){
 			int rands = rand.nextInt(3);

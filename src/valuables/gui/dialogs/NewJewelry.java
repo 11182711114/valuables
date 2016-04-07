@@ -22,7 +22,6 @@ public class NewJewelry extends NewValuable{
 		JPanel mainPanel = getMainPanel();
 		mainPanel.add(getNumberOfStonesPanel());
 		mainPanel.add(getGoldCheckboxPanel());
-		mainPanel.setVisible(true);
 	}
 	private JPanel getNumberOfStonesPanel(){
 		JPanel stonesPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -64,11 +63,11 @@ public class NewJewelry extends NewValuable{
 				return true;
 			}
 			else{
-				this.setError("Number of stones must be an integer >=0!");
+				this.showError("Number of stones must be an integer >=0!");
 			}
 		}
 		else{
-			this.setError("Names cannot be empty!");
+			this.showError("Names cannot be empty!");
 		}
 		return false;
 	}

@@ -63,10 +63,7 @@ public abstract class NewValuable{
 	public JPanel getMainPanel(){
 		return mainPanel;
 	}
-	protected void setError(String error){
-		showErrorPane(error);
-	}
-	private void showErrorPane(String error){
+	protected void showError(String error){
 		JOptionPane.showMessageDialog(parent, error,"Error",JOptionPane.ERROR_MESSAGE);
 	}
 	public abstract Valuable getValuable();

@@ -195,14 +195,7 @@ public class GUI{ //FIXME bad code consistency
 					AbstractButton button = buttons.nextElement();
 					
 					if(button.isSelected()){
-						switch(button.getText()){
-						case "Name":
-							valuableHandler.sortValuables(ValuableHandler.SORT_BY_NAME);
-							break;
-						case "Value":
-							valuableHandler.sortValuables(ValuableHandler.SORT_BY_VALUE);
-							break;
-						}
+						sortValuables(button.getText());
 						break;
 					}
 				}
@@ -216,6 +209,16 @@ public class GUI{ //FIXME bad code consistency
 				valuableHandler.marketCrash();
 			}
 		});
+	}
+	private void sortValuables(String s){
+		switch(s){
+		case "Name":
+			valuableHandler.sortValuables(ValuableHandler.SORT_BY_NAME);
+			break;
+		case "Value":
+			valuableHandler.sortValuables(ValuableHandler.SORT_BY_VALUE);
+			break;
+		}		
 	}
 	private void showNewDialog(String dialogToShow){
 		switch(dialogToShow){
