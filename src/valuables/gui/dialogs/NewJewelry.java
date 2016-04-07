@@ -57,19 +57,21 @@ public class NewJewelry extends NewValuable{
 	}
 	@Override
 	public boolean checkInput() {
+		String errors = "";
+		boolean isCorrect = true;
 		
-		if(checkName()){
-			if(checkStones()){
-				return true;
-			}
-			else{
-				this.showError("Number of stones must be an integer >=0!");
-			}
+		if(!checkName()){
+			isCorrect = false;
+			errors+="Names cannot be empty! \n";
 		}
-		else{
-			this.showError("Names cannot be empty!");
+		if(!checkStones()){
+			isCorrect = false;
+			errors+="Number of stones must be an integer >=0!";
 		}
-		return false;
+		if(!isCorrect){
+			showError(errors);
+		}
+		return isCorrect;
 	}
 	private boolean checkStones(){
 		boolean isCorrect = false;

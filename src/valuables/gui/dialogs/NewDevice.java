@@ -69,24 +69,24 @@ public class NewDevice extends NewValuable{
 	}
 	@Override
 	public boolean checkInput() {
-		
-		if(checkName()){
-			if(checkValue()){
-				if(checkWear()){
-					return true;
-				}
-				else{
-					showError("Wear must be an integer 1-10!");
-				}
-			}
-			else{
-				showError("Value must be a number!");
-			}
+		String errors = "";
+		boolean isCorrect = true;
+		if(!checkName()){
+			isCorrect = false;
+			errors+="Names cannot be empty! \n";
 		}
-		else{
-			showError("Names cannot be empty!");
+		if(!checkValue()){
+			isCorrect = false;
+			errors+="Value must be a number! \n";
 		}
-		return false;
+		if(!checkWear()){
+			isCorrect = false;
+			errors+="Wear must be an integer 1-10!";
+		}
+		if(!isCorrect){
+			showError(errors);
+		}
+		return isCorrect;
 	}
 	private boolean checkValue(){
 		boolean isCorrect = false;

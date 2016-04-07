@@ -76,26 +76,27 @@ public class NewStock extends NewValuable{
 	}
 	@Override
 	public boolean checkInput() {
+		String errors = "";
+		boolean isCorrect = true;
 		
-		if(checkName()){
-			if(checkValue()){
-				if(checkWear()){
-					return true;
-				}
-				else{
-					this.showError("Number of stocks must be an integer!");
-				}
-			}
-			else{
-				this.showError("Exchange must be a number!");
-			}
+		if(!checkName()){
+			isCorrect = false;
+			errors+="Names cannot be empty! \n";
 		}
-		else{
-			this.showError("Names cannot be empty!");
+		if(!checkExchangeRate()){
+			isCorrect = false;
+			errors+="Exchange rate must be a number!\n";
 		}
-		return false;
+		if(!checkNumberOfStocks()){
+			isCorrect = false;
+			errors+="Number of stocks must be an integer!";
+		}
+		if(!isCorrect){
+			showError(errors);
+		}
+		return isCorrect;
 	}
-	private boolean checkValue(){
+	private boolean checkExchangeRate(){
 		boolean isCorrect = false;
 		try{
 			if(Double.parseDouble(exchangeRateInput.getText().trim())>0)
@@ -104,7 +105,7 @@ public class NewStock extends NewValuable{
 		catch(NumberFormatException e){}
 		return isCorrect;
 	}
-	private boolean checkWear(){
+	private boolean checkNumberOfStocks(){
 		boolean isCorrect = false;
 		
 		try{

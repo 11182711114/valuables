@@ -1,5 +1,5 @@
 package valuables.items;
-//fredrik larsson frla9839 - Johan Eklundh JoEk9694 (831007-1959)
+
 public class Stock extends Valuable{
 	private int numberOfStock;
 	private double exchangeRate;
