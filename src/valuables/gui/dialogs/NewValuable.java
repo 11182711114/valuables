@@ -11,17 +11,25 @@ import javax.swing.JTextField;
 import valuables.items.Valuable;
 
 public abstract class NewValuable{
-	private JLabel nameText = new JLabel("Name:");
-	private JTextField nameInput = new JTextField(10);
-	JPanel mainPanel = new JPanel();
+	private JLabel nameText;
+	private JTextField nameInput;
+	JPanel mainPanel;
 	
-	private String fullClassName = this.getClass().getName(); //gets the full class path as string
-	private String className = fullClassName.substring(fullClassName.lastIndexOf(".New")+4); //trims fullClassName to after last '.'(i.e. only the class name)
+	private String fullClassName;
+	private String className;
 	
 	private Component parent;
 	
 	public NewValuable(Component parent){
+		nameText = new JLabel("Name:");
+		nameInput = new JTextField(10);
+		mainPanel = new JPanel();
+		
+		fullClassName = this.getClass().getName();
+		className = fullClassName.substring(fullClassName.lastIndexOf(".New")+4);
+		
 		this.parent = parent;
+		
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		JPanel namePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		namePanel.add(nameText);

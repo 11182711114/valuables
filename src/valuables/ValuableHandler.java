@@ -20,15 +20,15 @@ public class ValuableHandler{
 	
 	private GUI gui;
 	
-	private ArrayList<Valuable> valuables = new ArrayList<>();
+	private ArrayList<Valuable> valuables; 
 	
 	public ValuableHandler(){
-		gui = new GUI(ValuableHandler.this);
+		valuables = new ArrayList<>();
 	}
 	public void startGUI(){
-		test();
 		SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
+				gui = new GUI(ValuableHandler.this);
 				gui.run();
 			}
 		});

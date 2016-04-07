@@ -10,12 +10,14 @@ public abstract class Valuable{
 	
 	private String name;
 	
-	private String fullClassName = this.getClass().getName();//gets the full class path as string
-	private String className = fullClassName.substring(fullClassName.lastIndexOf('.')+1);//trims fullClassName to after last '.'(i.e. only the class name)
+	private String fullClassName;
+	private String className;
 	
 	
 	public Valuable(String name){
 		this.name = name;
+		fullClassName = this.getClass().getName();
+		className = fullClassName.substring(fullClassName.lastIndexOf('.')+1);
 	}
 	
 	public double getValuePostTax(){

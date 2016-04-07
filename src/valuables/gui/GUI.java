@@ -35,7 +35,6 @@ import valuables.items.*;
 
 public class GUI{ //FIXME bad code consistency
 	private static final String[] ALLOWED_VALUABLES = {"Device","Jewelry","Stock"};
-	private static final String newLine = "\n";
 	
 	private JFrame mainWindow;
 	
