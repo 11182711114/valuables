@@ -33,13 +33,13 @@ import valuables.gui.dialogs.NewJewelry;
 import valuables.gui.dialogs.NewStock;
 import valuables.items.*;
 
-public class GUI{ //FIXME bad code consistency
+public class GUI{
 	private static final String[] ALLOWED_VALUABLES = {"Device","Jewelry","Stock"};
 	
-	private JFrame mainWindow;
+	private final JFrame mainWindow;
 	
-	private int frameWidth = 500;
-	private int frameHeight = 500;
+	private final int frameWidth = 500;
+	private final int frameHeight = 500;
 	
 	private JPanel defaultView;
 	

@@ -18,17 +18,17 @@ public class ValuableHandler{
 	public static final int SORT_BY_NAME = 0;
 	public static final int SORT_BY_VALUE = 1;
 	
-	private GUI gui;
+	private final GUI gui;
 	
 	private ArrayList<Valuable> valuables; 
 	
 	public ValuableHandler(){
 		valuables = new ArrayList<>();
+		gui = new GUI(ValuableHandler.this);
 	}
 	public void startGUI(){
 		SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
-				gui = new GUI(ValuableHandler.this);
 				gui.run();
 			}
 		});
